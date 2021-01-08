@@ -20,7 +20,7 @@ Route::group(['namespace' => 'Admin'], function () {
 
 Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
     route::post('/logout', 'AuthController@logout')->name('admin.logout');
-    Route::get('/dashboard', 'AuthController@viewDashboard')->name('view.dashboard');
+    Route::get('/', 'AuthController@viewDashboard')->name('view.dashboard');
 
     Route::group(['prefix' => 'teacher'], function () {
         route::get('/teachers', 'TeacherController@index')->name('manage.teacher');
@@ -29,6 +29,22 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::post('/create-teacher', 'TeacherController@createTeacher')->name('add.teacher');
         route::get('/edit-teacher/{id}', 'TeacherController@getEdit')->name('view.edit.teacher');
         route::post('/edit-teacher', 'TeacherController@updateTeacher')->name('edit.teacher');
+    });
+
+    Route::group(['prefix' => 'exersire'], function () {
+        route::get('/', 'ExersireController@index')->name('index.exersire');
+        route::get('/datatable-exercire', 'ExersireController@datatable')->name('datatable.exercire');
+        route::get('/add-exersire', 'ExersireController@addExersire')->name('view.add.exersire');
+        route::post('/add-exersire', 'ExersireController@createNewEx')->name('add.exersire');
+    });
+
+    Route::group(['prefix' => 'test'], function () {
+        route::get('/','TestController@index')->name('index.test');
+        route::get('/datatable-test', 'TestController@datatable')->name('get.data.table.test');
+        route::get('/add-test', 'TestController@addTestOnline')->name('view.add.test');
+        route::post('/add-test', 'TestController@createTest')->name('add.test');
+        route::get('/answer/{id}','TestController@viewTestAnswers')->name('answer.test');
+        route::get('/update-answer', 'TestController@updateAnswer')->name('update.answer.test');
     });
 
     Route::group(['prefix' => 'exersire'], function () {

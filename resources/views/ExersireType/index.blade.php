@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="heading">
-                        <h2 class="text-center mb-4">Exersire Type List</h2>
+                        <h2 class="text-center mb-4">Danh sách dạng bài tập</h2>
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-12 text-right">

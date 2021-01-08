@@ -26,6 +26,18 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.test') }}" aria-expanded="false">
+                        <i class="m-r-10 mdi mdi-account-circle"></i><span class="hide-menu">Đề thi online</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.exersire') }}" aria-expanded="false">
+                        <i class="m-r-10 mdi mdi-account-circle"></i><span class="hide-menu">Bài tập</span>
+                    </a>
+                </li>
+
                 {{-- <li class="sidebar-item">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="m-r-10 mdi mdi-calendar-blank"></i><span class="hide-menu">Work time</span></a>
                     <ul aria-expanded="false" class="collapse first-level">

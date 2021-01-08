@@ -1,5 +1,5 @@
 @extends('layouts.app1')
-@section('title_for_layout','Dashboard')
+@section('title_for_layout','Test online')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
@@ -17,11 +17,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="heading">
-                        <h2 class="text-center mb-4">Danh sách giáo viên</h2>
+                        <h2 class="text-center mb-4">Danh sách bài thi online</h2>
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-12 text-right">
-                            <a href="{{ route('view.add.teacher') }}" class="btn waves-effect waves-light btn-success btn-add"><i class="fas fa-plus"></i>Add new teacher</a>
+                            <a href="{{ route('view.add.test') }}" class="btn waves-effect waves-light btn-success btn-add"><i class="fas fa-plus"></i>Thêm đề thi mới</a>
                           </div>
                     </div>
 
@@ -30,9 +30,12 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th>Image</th>
-                                    <th>Name</th>
-                                    <th>subject</th>
+                                    <th>Mã đề</th>
+                                    <th>Môn học</th>
+                                    <th>Lớp</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Số câu hỏi</th>
+                                    <th>Thời gian làm bài</th>
                                     <th width="14%">Actions</th>
                                 </tr>
                             </thead>
@@ -62,19 +65,17 @@
                 "order": [[ 0, "descriptionc" ]],
                 ajax : {
                     type: 'get',
-                    url: '{{ route('datatable.teacher') }}',
+                    url: '{{ route('get.data.table.test') }}',
                 },
                 columns:[
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, width: '5%',className:'text-center align-middle'},
-                    {data: 'avatar', name: 'avatar', width: '100px', className: 'text-center', orderable: false, searchable: false, render: function (data, type, row) {
-                        var url = data;
-                        console.log(url);
-                        if (url == null) url = '{{ url('/img/no-image.jpg') }}';
-                            return '<img src="' + url +'" class="img-thumbnail" alt="'+ row['avatar'] +'" width="100px" height="auto"/>';
-                    }},
-                    { data: 'name', name: 'name'},
-                    { data: 'subject', name: 'subject', width: '14%',className: 'text-center align-middle' },
-                    {data: 'action', name: 'action',width: '15%',className: 'text-center align-middle',orderable: false,searchable: false},
+                    { data: 'code', name: 'code'},
+                    { data: 'subject', name: 'subject'},
+                    { data: 'class', name: 'class'},
+                    { data: 'title', name: 'title'},
+                    { data: 'question_number', name: 'question_number'},
+                    { data: 'min', name: 'min', width: '14%',className: 'text-center align-middle' },
+                    { data: 'action', name: 'action',width: '15%',className: 'text-center align-middle',orderable: false,searchable: false},
                 ]
             });
         });

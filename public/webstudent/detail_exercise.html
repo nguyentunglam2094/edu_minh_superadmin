@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyển sinh</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="images/logo448x152.png" type="image/x-icon">
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <section class="header">
+                <div class="heading">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3">
+                                <div class="logo">
+                                    <img src="images/logo448x152.png" alt="" class="img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-md-9">
+                                <div class="search_box">
+                                    <div class="icon_search">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                    <input type="text" class="input_search form-control" placeholder="Searching..." name="search">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="nd-main-menu">
+                <div id="bg_header"></div>
+                <div class="container">
+                    <div class="nav-wrapper">
+                        <nav class="navbar">
+                            <a href="index.html" class="mobile_logo">
+                                <img src="images/logo448x152.png" alt="">
+                            </a>
+    
+                            <div class="open-menu" id="open-menu">
+                                <img src="images/menu.png" alt="">
+                            </div>
+    
+                            <ul class="nav no-search" id="menu-mobile">
+                                <div class="logo_mobile">
+                                    <a href="index.html">
+                                        <img src="images/logo448x152.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="close" id="close-sidebar">
+                                    <img src="images/cancel.png" alt="">
+                                </div>
+                                <li class="nav-item border-left"><a href="index.html">Trang chủ</a></li>
+                                <li class="nav-item dn-nav_item">
+                                    <a href="" class="item_dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Toán học</a>
+                                    <div class="dropdown-menu dropdown-item-nav" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Lớp 1</a>
+                                        <a class="dropdown-item" href="#">Lớp 2</a>
+                                        <a class="dropdown-item" href="#">Lớp 3</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dn-nav_item">
+                                    <a href="" class="item_dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vật lý</a>
+                                    <div class="dropdown-menu dropdown-item-nav" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Lớp 1</a>
+                                        <a class="dropdown-item" href="#">Lớp 2</a>
+                                        <a class="dropdown-item" href="#">Lớp 3</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dn-nav_item">
+                                    <a href="" class="item_dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Hoá học</a>
+                                    <div class="dropdown-menu dropdown-item-nav" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Lớp 1</a>
+                                        <a class="dropdown-item" href="#">Lớp 2</a>
+                                        <a class="dropdown-item" href="#">Lớp 3</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dn-nav_item">
+                                    <a href="" class="item_dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sinh học</a>
+                                    <div class="dropdown-menu dropdown-item-nav" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Lớp 1</a>
+                                        <a class="dropdown-item" href="#">Lớp 2</a>
+                                        <a class="dropdown-item" href="#">Lớp 3</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dn-nav_item">
+                                    <a href="" class="item_dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Văn học</a>
+                                    <div class="dropdown-menu dropdown-item-nav" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Lớp 1</a>
+                                        <a class="dropdown-item" href="#">Lớp 2</a>
+                                        <a class="dropdown-item" href="#">Lớp 3</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dn-nav_item">
+                                    <a href="" class="item_dropdown dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ngoại ngữ</a>
+                                    <div class="dropdown-menu dropdown-item-nav" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="#">Lớp 1</a>
+                                        <a class="dropdown-item" href="#">Lớp 2</a>
+                                        <a class="dropdown-item" href="#">Lớp 3</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#">Liên hệ</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </section>
+            <section class="detail_teacher detail_subject">
+                <div class="container">
+                    <h4>Câu 1 (trang 9 sgk Ngữ văn 11 Tập 1):</h4>
+                    <div class="detail_exercise">
+                        * Quang cảnh trong phủ Chúa
+                        
+                        - Phải đi qua nhiều lần cửa, với những dãy hành lang dài quanh co nối nhau liên tiếp, ở mỗi cửa đều có lính canh gác, ai muốn vào phải có thẻ.
+                        
+                        - Vườn hoa trong phủ Chúa cây cối um tùm, chim kêu ríu rít, danh hoa cỏ thắm, gió đưa thoang thoảng mùi hương
+                        - Bên trong phủ là nhà Đại đường, Quyển bổng, Gác tía với kiệu son, võng điều, đồ nghi trượng sơn son thếp vàng và những đồ đạc nhân gian chưa từng thấy.
+
+                        - Đồ dùng tiếp khách ăn uống toàn là mâm vàng chén bạc
+
+                        - Đến nội cung phải đi qua 5, 6 lần trướng gấm
+
+                        - Phòng thắp nến, sập thếp vàng, ghế rồng sơn son, nệm gấm mà che
+
+                        ⇒ Quang cảnh ở phủ chúa cực kì tráng lệ lộng lẫy, không đâu sánh bằng
+
+                        * Cung cách sinh hoạt trong phủ Chúa
+
+                        - Khi đi thì có tên đầy tớ chạy trước hét đường
+
+                        - Trong phủ người giữ cửa truyền báo rộn ràng, người có việc qua lại như mắc cửi
+
+                        - Lời lẽ nhắc đến thế tử đều hết mực cung kính, lễ độ tránh phạm úy.
+                        - Chúa Trịnh luôn cho phi tần chầu chực xung quanh. Tác giả không được thấy mặt Chúa
+
+                        - Thế tử bệnh có 7, 8 người thầy thuốc túc trực, phục dịch
+
+                        - Tác giả phải quỳ lạy 4 lần lúc đến và 4 lần lúc về
+
+                        ⇒ Cung cách sinh hoạt trong phủ chúa với những lễ nghi, khuôn phép, cách nói năng, người hầu kẻ hạ cho thấy sự cao sang, quyền uy, cùng với cuộc sống hưởng thụ xa hoa đến cực điểm và sự lộng quyền của nhà chúa.
+
+                        * Cách nhìn, thái độ của Lê Hữu Trác đối với cuộc sống trong phủ
+
+                        - Lê Hữu Trác mặc dù khen cái đẹp, cái sang nơi phủ Chúa những tác giả tỏ vẻ dửng dưng trước những thứ vật chất xa hoa và không đồng tình với cuộc sống quá xa xỉ, thừa thãi, hưởng lạc nhưng thiếu khí trời và tự do như ở trong phủ Chúa
+                    </div>
+                </div>
+            </section>
+            <section class="dn-infor--teacher dn-list_excercise">
+                <div class="container">
+                    <div class="row mb-2">
+                        <div class="col-lg-10 col-md-10">
+                            <h2>Danh sách các môn học khác</h2>
+                        </div>
+                        <div class="col-lg-2 col-md-2 d-flex align-items-center justify-content-end">
+                            <a href="#" class="review_all">Xem tất cả <i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="carousel-wrap">
+                        <div class="owl-carousel">
+                            <div class="item_subject">
+                                <a href="detail_exercise.html">
+                                    <div class="img_subject">
+                                        <img src="images/De-Thi-Mon-Toan-2020.jpg" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="infor_subject">
+                                        <h4>Đề thi môn toán 2020</h4>
+                                        <div class="name_subject"><span>Môn</span>: <span>Toán học</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_subject">
+                                <a href="detail_exercise.html">
+                                    <div class="img_subject">
+                                        <img src="images/De-Thi-Mon-Toan-2020.jpg" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="infor_subject">
+                                        <h4>Đề thi môn toán 2020</h4>
+                                        <div class="name_subject"><span>Môn</span>: <span>Toán học</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_subject">
+                                <a href="detail_exercise.html">
+                                    <div class="img_subject">
+                                        <img src="images/De-Thi-Mon-Toan-2020.jpg" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="infor_subject">
+                                        <h4>Đề thi môn toán 2020</h4>
+                                        <div class="name_subject"><span>Môn</span>: <span>Toán học</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_subject">
+                                <a href="detail_exercise.html">
+                                    <div class="img_subject">
+                                        <img src="images/De-Thi-Mon-Toan-2020.jpg" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="infor_subject">
+                                        <h4>Đề thi môn toán 2020</h4>
+                                        <div class="name_subject"><span>Môn</span>: <span>Toán học</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_subject">
+                                <a href="detail_exercise.html">
+                                    <div class="img_subject">
+                                        <img src="images/De-Thi-Mon-Toan-2020.jpg" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="infor_subject">
+                                        <h4>Đề thi môn toán 2020</h4>
+                                        <div class="name_subject"><span>Môn</span>: <span>Toán học</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="item_subject">
+                                <a href="detail_exercise.html">
+                                    <div class="img_subject">
+                                        <img src="images/De-Thi-Mon-Toan-2020.jpg" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="infor_subject">
+                                        <h4>Đề thi môn toán 2020</h4>
+                                        <div class="name_subject"><span>Môn</span>: <span>Toán học</span></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </section>
+            <section class="comment">
+                <div class="container">
+                    <div class="col-md-12" id="fbcomment">
+                        <div class="header_comment">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                  <span class="count_comment">264235 Comments</span>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                  <span class="sort_title">Sort by</span>
+                                  <select class="sort_by">
+                                    <option>Top</option>
+                                    <option>Newest</option>
+                                    <option>Oldest</option>
+                                  </select>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="body_comment">
+                            <div class="row">
+                                <div class="avatar_comment col-md-1">
+                                  <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar"/>
+                                </div>
+                                <div class="box_comment col-md-11">
+                                  <textarea class="commentar" placeholder="Add a comment..."></textarea>
+                                  <div class="box_post">
+                                    <div class="pull-left">
+                                      <input type="checkbox" id="post_fb"/>
+                                      <label for="post_fb">Also post on Facebook</label>
+                                    </div>
+                                    <div class="pull-right">
+                                      <span>
+                                        <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar" />
+                                        <i class="fa fa-caret-down"></i>
+                                      </span>
+                                      <button onclick="submit_comment()" type="button" value="1">Post</button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <ul id="list_comment" class="col-md-12">
+                                    <!-- Start List Comment 1 -->
+                                    <li class="box_result row">
+                                        <div class="avatar_comment col-md-1">
+                                            <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar"/>
+                                        </div>
+                                        <div class="result_comment col-md-11">
+                                            <h4>Nath Ryuzaki</h4>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+                                            <div class="tools_comment">
+                                                <a class="like" href="javascript:void(0):">Like</a>
+                                                <span aria-hidden="true"> · </span>
+                                                <a class="replay" href="javascript:void(0):">Reply</a>
+                                                <span aria-hidden="true"> · </span>
+                                                <i class="far fa-thumbs-up"></i> <span class="count">1</span> 
+                                                <span aria-hidden="true"> · </span>
+                                                <span>26m</span>
+                                            </div>
+                                            <ul class="child_replay">
+                                                <li class="box_reply row">
+                                                    <div class="avatar_comment col-md-1">
+                                                        <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar"/>
+                                                    </div>
+                                                     <div class="result_comment col-md-11">
+                                                        <h4>Sugito</h4>
+                                                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+                                                        <div class="tools_comment">
+                                                            <a class="like" href="javascript:void(0):">Like</a>
+                                                            <span aria-hidden="true"> · </span>
+                                                            <a class="replay" href="javascript:void(0):">Reply</a>
+                                                            <span aria-hidden="true"> · </span>
+                                                            <i class="far fa-thumbs-up"></i> <span class="count">1</span> 
+                                                            <span aria-hidden="true"> · </span>
+                                                            <span>26m</span>
+                                                        </div>
+                                                        <ul class="child_replay"></ul>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    
+                                    <!-- Start List Comment 2 -->
+                                    <li class="box_result row">
+                                        <div class="avatar_comment col-md-1">
+                                            <img src="https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg" alt="avatar"/>
+                                        </div>
+                                        <div class="result_comment col-md-11">
+                                            <h4>Gung Wah</h4>
+                                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's.</p>
+                                            <div class="tools_comment">
+                                                <a class="like" href="javascript:void(0):">Like</a>
+                                                <span aria-hidden="true"> · </span>
+                                                <a class="replay" href="javascript:void(0):">Reply</a>
+                                                <span aria-hidden="true"> · </span>
+                                                <i class="far fa-thumbs-up"></i> <span class="count">1</span> 
+                                                <span aria-hidden="true"> · </span>
+                                                <span>26m</span>
+                                            </div>
+                                            <ul class="child_replay"></ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            <button class="show_more" type="button">Load 10 more comments</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="dn-footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-3">
+                            <div class="items-footer">
+                                <h4>Về tuyển sinh</h4>
+                                <ul>
+                                    <li><a href="#">Về chúng tôi</a> </li>
+                                    <li><a href="#">Sứ mệnh và giá trị</a></li>
+                                    <li><a href="#">Điều khoản sử dụng</a></li>
+                                    <li><a href="#">Chính sách bảo mật</a></li>
+                                    <li><a href="#">Tuyển dụng</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3">
+                            <div class="items-footer">
+                                <h4>Hỗ trợ khách hàng</h4>
+                                <ul>
+                                    <li><a href="#">Về chúng tôi</a> </li>
+                                    <li><a href="#">Sứ mệnh và giá trị</a></li>
+                                    <li><a href="#">Điều khoản sử dụng</a></li>
+                                    <li><a href="#">Chính sách bảo mật</a></li>
+                                    <li><a href="#">Tuyển dụng</a></li>
+                                    <li><a href="#">FAQ</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="address-footer">
+                                <p class="mb-0"><span>Trụ sở chính:</span> <span>58 Tố Hữu, Trung Văn, Nam Từ Liêm, Hà Nội</span></p>
+                                <p class="mb-0"><span>Liên hệ:</span> <span>dvnit2204@gmail.com</span></p>
+                                <p class="mb-0"><span>Phone:</span> <span>01234567</span></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2"></div>
+                    </div>
+                </div>
+            </section>
+            
+        </header>
+    </div>
+
+    <script src="js/jquery-3.4.1.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="js/index.js"></script>
+    <script>
+        function submit_comment(){
+            var comment = $('.commentar').val();
+            el = document.createElement('li');
+            el.className = "box_result row";
+            el.innerHTML =
+                    '<div class=\"avatar_comment col-md-1\">'+
+                    '<img src=\"https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg\" alt=\"avatar\"/>'+
+                    '</div>'+
+                    '<div class=\"result_comment col-md-11\">'+
+                    '<h4>Anonimous</h4>'+
+                    '<p>'+ comment +'</p>'+
+                    '<div class=\"tools_comment\">'+
+                    '<a class=\"like\" href=\"javascript:void(0):\">Like</a><span aria-hidden=\"true\"> · </span>'+
+                    '<i class="\far fa-thumbs-up\"></i> <span class=\"count\">0</span>'+
+                    '<span aria-hidden=\"true\"> · </span>'+
+                    '<a class=\"replay\" href=\"javascript:void(0):\">Reply</a><span aria-hidden=\"true\"> · </span>'+
+                        '<span>1m</span>'+
+                    '</div>'+
+                    '<ul class="child_replay"></ul>'+
+                    '</div>';
+                document.getElementById('list_comment').prepend(el);
+                $('.commentar').val('');
+            }
+
+            $(document).ready(function() {
+                $('#list_comment').on('click', '.like', function (e) {
+                    $current = $(this);
+                    var x = $current.closest('div').find('.like').text().trim();
+                    var y = parseInt($current.closest('div').find('.count').text().trim());
+                    
+                    if (x === "Like") {
+                        $current.closest('div').find('.like').text('Unlike');
+                        $current.closest('div').find('.count').text(y + 1);
+                    } else if (x === "Unlike"){
+                        $current.closest('div').find('.like').text('Like');
+                        $current.closest('div').find('.count').text(y - 1);
+                    } else {
+                        var replay = $current.closest('div').find('.like').text('Like');
+                        $current.closest('div').find('.count').text(y - 1);
+                    }
+                });
+                
+                $('#list_comment').on('click', '.replay', function (e) {
+                    cancel_reply();
+                    $current = $(this);
+                    el = document.createElement('li');
+                    el.className = "box_reply row";
+                    el.innerHTML =
+                        '<div class=\"col-md-12 reply_comment\">'+
+                            '<div class=\"row\">'+
+                                '<div class=\"avatar_comment col-md-1\">'+
+                                '<img src=\"https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg\" alt=\"avatar\"/>'+
+                                '</div>'+
+                                '<div class=\"box_comment col-md-10\">'+
+                                '<textarea class=\"comment_replay\" placeholder=\"Add a comment...\"></textarea>'+
+                                '<div class=\"box_post\">'+
+                                    '<div class=\"pull-right\">'+
+                                    '<span>'+
+                                        '<img src=\"https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg\" alt=\"avatar\" />'+
+                                        '<i class=\"fa fa-caret-down\"></i>'+
+                                    '</span>'+
+                                    '<button class=\"cancel\" onclick=\"cancel_reply()\" type=\"button\">Cancel</button>'+
+                                    '<button onclick=\"submit_reply()\" type=\"button\" value=\"1\">Reply</button>'+
+                                    '</div>'+
+                                '</div>'+
+                                '</div>'+
+                            '</div>'+
+                        '</div>';
+                    $current.closest('li').find('.child_replay').prepend(el);
+                });
+            });
+
+            function submit_reply(){
+            var comment_replay = $('.comment_replay').val();
+            el = document.createElement('li');
+            el.className = "box_reply row";
+            el.innerHTML =
+                    '<div class=\"avatar_comment col-md-1\">'+
+                    '<img src=\"https://static.xx.fbcdn.net/rsrc.php/v1/yi/r/odA9sNLrE86.jpg\" alt=\"avatar\"/>'+
+                    '</div>'+
+                    '<div class=\"result_comment col-md-11\">'+
+                    '<h4>Anonimous</h4>'+
+                    '<p>'+ comment_replay +'</p>'+
+                    '<div class=\"tools_comment\">'+
+                    '<a class=\"like\" href=\"javascript:void(0):\">Like</a><span aria-hidden=\"true\"> · </span>'+
+                    '<i class="\far fa-thumbs-up\"></i> <span class=\"count\">0</span>'+
+                    '<span aria-hidden=\"true\"> · </span>'+
+                    '<a class=\"replay\" href=\"javascript:void(0):\">Reply</a><span aria-hidden=\"true\"> · </span>'+
+                        '<span>1m</span>'+
+                    '</div>'+
+                    '<ul class="child_replay"></ul>'+
+                    '</div>';
+                $current.closest('li').find('.child_replay').prepend(el);
+                $('.comment_replay').val('');
+                cancel_reply();
+            }
+
+            function cancel_reply(){
+                $('.reply_comment').remove();
+            }
+    </script>
+</body>
+</html>
