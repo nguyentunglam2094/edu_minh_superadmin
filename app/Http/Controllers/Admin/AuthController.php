@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banners;
 use App\Models\Teachers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class AuthController extends Controller
     public function logout()
     {
         \Auth::guard()->logout();
-        return redirect()->route('getLogin');
+        return redirect()->route('login');
     }
 
     public function getLogin(){
@@ -47,8 +48,11 @@ class AuthController extends Controller
      * @param
      * @author lamnt
      */
-    public function viewDashboard(Request $request)
+    public function viewDashboard(Request $request, Banners $banners)
     {
-        return view('dashboard');
+        $list = $banners->orderBy('id', 'desc')->get();
+        return view('dashboard')->with([
+            'banners'=>$list
+        ]);
     }
 }

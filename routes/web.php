@@ -14,13 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'Admin'], function () {
-    Route::get('/login', 'AuthController@getLogin')->name('getLogin');
+    Route::get('/login', 'AuthController@getLogin')->name('login');
     route::post('/login', 'AuthController@login')->name('admin.login');
 });
 
 Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
     route::post('/logout', 'AuthController@logout')->name('admin.logout');
     Route::get('/', 'AuthController@viewDashboard')->name('view.dashboard');
+
+    route::post('/update-banners', 'BannerController@store')->name('save.banners');
+    route::delete('/delete-banner', 'BannerController@destroyBanner')->name('delete.banner');
 
     Route::group(['prefix' => 'teacher'], function () {
         route::get('/teachers', 'TeacherController@index')->name('manage.teacher');
