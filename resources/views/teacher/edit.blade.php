@@ -19,7 +19,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-center font-weight-bold">Edit teacher</h3>
+                    <h3 class="card-title text-center font-weight-bold">Sửa giáo viên</h3>
                     <form class="mt-4" method="POST" action="{{ route('edit.teacher') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="teacher_id" value="{{ $teacher->id }}">

@@ -1,5 +1,5 @@
 @extends('layouts.app1')
-@section('title_for_layout','Danh sách giáo viên')
+@section('title_for_layout','Danh sách học sinh')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
@@ -17,11 +17,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="heading">
-                        <h2 class="text-center mb-4">Danh sách giáo viên</h2>
+                        <h2 class="text-center mb-4">Danh sách học sinh</h2>
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-12 text-right">
-                            <a href="{{ route('view.add.teacher') }}" class="btn waves-effect waves-light btn-success btn-add"><i class="fas fa-plus"></i>Thêm mới giáo viên</a>
+                            <a href="" class="btn waves-effect waves-light btn-success btn-add"><i class="fas fa-plus"></i>Thêm mới học sinh</a>
                           </div>
                     </div>
 
@@ -32,7 +32,9 @@
                                     <th>id</th>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th>subject</th>
+                                    <th>Email</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Địa chỉ</th>
                                     <th width="14%">Actions</th>
                                 </tr>
                             </thead>
@@ -62,7 +64,7 @@
                 "order": [[ 0, "descriptionc" ]],
                 ajax : {
                     type: 'get',
-                    url: '{{ route('datatable.teacher') }}',
+                    url: '{{ route('datatable.student') }}',
                 },
                 columns:[
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, width: '5%',className:'text-center align-middle'},
@@ -73,8 +75,10 @@
                             return '<img src="' + url +'" class="img-thumbnail" alt="'+ row['avatar'] +'" width="100px" height="auto"/>';
                     }},
                     { data: 'name', name: 'name'},
-                    { data: 'subject', name: 'subject', width: '14%',className: 'text-center align-middle' },
-                    {data: 'action', name: 'action',width: '15%',className: 'text-center align-middle',orderable: false,searchable: false},
+                    { data: 'email', name: 'email', width: '14%',className: 'text-center align-middle' },
+                    { data: 'phone', name: 'phone',width: '15%',className: 'text-center align-middle'},
+                    { data: 'address', name: 'address',width: '15%',className: 'text-center align-middle'},
+                    { data: 'action', name: 'action',width: '15%',className: 'text-center align-middle'},
                 ]
             });
         });

@@ -41,6 +41,12 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::post('/add-exersire', 'ExersireController@createNewEx')->name('add.exersire');
     });
 
+    Route::group(['prefix' => 'student'], function () {
+        route::get('/', 'StudentController@index')->name('index.student');
+        route::get('/datatable-teacher', 'StudentController@datatable')->name('datatable.student');
+        route::get('/student-detail/{id}', 'StudentController@detail')->name('student.detail');
+    });
+
     Route::group(['prefix' => 'test'], function () {
         route::get('/','TestController@index')->name('index.test');
         route::get('/datatable-test', 'TestController@datatable')->name('get.data.table.test');

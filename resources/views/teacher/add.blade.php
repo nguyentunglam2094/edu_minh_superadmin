@@ -19,7 +19,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-center font-weight-bold">Add teacher</h3>
+                    <h3 class="card-title text-center font-weight-bold">Thêm giáo viên</h3>
                     <form class="mt-4" method="POST" action="{{ route('add.teacher') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">

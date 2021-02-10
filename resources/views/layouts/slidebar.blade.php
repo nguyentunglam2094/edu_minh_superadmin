@@ -21,6 +21,12 @@
                 </li>
 
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.student') }}" aria-expanded="false">
+                        <i class="m-r-10 mdi mdi-account-circle"></i><span class="hide-menu">Quản lý học sinh</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.exersire.type') }}" aria-expanded="false">
                         <i class="m-r-10 mdi mdi-account-circle"></i><span class="hide-menu">Dạng bài tập</span>
                     </a>
