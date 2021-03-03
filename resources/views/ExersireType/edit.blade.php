@@ -8,7 +8,12 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/pickadate/lib/themes/default.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/pickadate/lib/themes/default.date.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/pickadate/lib/themes/default.time.css') }}">
+
+<link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/ckeditor/samples/css/samples.css') }}">
+
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+
 
 @endsection
 @section('bread')
@@ -20,7 +25,7 @@
             <div class="card">
                 <div class="card-body">
                     <h3 class="card-title text-center font-weight-bold">Dạng bài tập</h3>
-                    <form class="mt-4" method="POST" action="" enctype="multipart/form-data">
+                    <form class="mt-4" method="POST" action="{{ route('edit.type') }}" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="type_id" value="{{ $detail->id }}">
                     <div class="row">
@@ -44,7 +49,7 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Title <span class="text-danger">*</span></label>
+                                        <label for="name">Tiêu đề <span class="text-danger">*</span></label>
                                         @if($errors->has('title'))
                                             <input type="text" class="form-control is-invalid"  placeholder="Dạng bài tập" name="title" value="{{ $detail->title }}"  >
                                             <div class="invalid-feedback">{{ $errors->first('title') }}</div>
@@ -56,28 +61,14 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Subject <span class="text-danger">*</span></label>
-                                        <select class="select2 form-control custom-select" name="subject_id" id="subject_id" style="width: 100%; height:36px;">
-                                            @foreach ($listSubject as $subj)
-                                                <option value="{{ $subj->id }}" {{ $detail->subject_id == $subj->id ? 'selected' : '' }}>{{ $subj->title }}</option>
+                                        <label for="name">Chủ đề <span class="text-danger">*</span></label>
+                                        <select class="select2 form-control custom-select" name="theme_id" style="width: 100%; height:36px;">
+                                            @foreach ($list as $theme)
+                                                <option value="{{ $theme->id }}" {{ $detail->theme_id == $theme->id ? 'selected' : '' }}>{{ $theme->title }}</option>
                                             @endforeach
                                         </select>
-                                    @if($errors->has('subject_id'))
-                                    <div class="invalid-feedback">{{ $errors->first('subject_id') }}</div>
-                                    @endif
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="name">Class <span class="text-danger">*</span></label>
-                                        <select class="select2 form-control custom-select" name="class_id" style="width: 100%; height:36px;">
-                                            @foreach ($listClass as $class)
-                                                <option value="{{ $class->id }}" {{ $detail->class_id == $class->id ? 'selected' : '' }}>{{ $class->title }}</option>
-                                            @endforeach
-                                        </select>
-                                    @if($errors->has('class_id'))
-                                    <div class="invalid-feedback">{{ $errors->first('class_id') }}</div>
+                                    @if($errors->has('theme_id'))
+                                    <div class="invalid-feedback">{{ $errors->first('theme_id') }}</div>
                                     @endif
                                     </div>
                                 </div>
@@ -85,15 +76,14 @@
 
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="name">Description</label>
-                                        @if($errors->has('address'))
-                                            <input type="text" class="form-control is-invalid"  placeholder="description" name="description" value="{{ $detail->description }}" >
+                                        <label for="name">Mô tả</label>
+                                        <textarea name="description" id="ckeditor" cols="50" rows="15" class="ckeditor">{{ $detail->description }}</textarea>
+                                        @if($errors->has('description'))
                                             <div class="invalid-feedback">{{ $errors->first('description') }}</div>
-                                        @else
-                                            <input type="text" class="form-control" placeholder="description" name="description" value="{{ $detail->description }}" >
                                         @endif
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -126,6 +116,10 @@
 <script src="{{ asset('xtreme/assets/libs/pickadate/lib/compressed/picker.time.js') }}"></script>
 <script src="{{ asset('xtreme/assets/libs/pickadate/lib/compressed/legacy.js') }}"></script>
 <script src="{{ asset('xtreme/assets/libs/daterangepicker/daterangepicker.js') }}"></script>
+
+<script src="{{ asset('xtreme/assets/libs/ckeditor/ckeditor.js') }}"></script>
+<script src=" {{ asset('xtreme/assets/libs/ckeditor/samples/js/sample.js') }}"></script>
+
 <script>
     $('#start_at, #end_at').pickatime({
 

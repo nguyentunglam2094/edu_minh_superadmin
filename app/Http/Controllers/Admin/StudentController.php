@@ -9,6 +9,15 @@ use Yajra\DataTables\DataTables;
 class StudentController extends Controller
 {
     //
+    public function activeStudent(Request $request, Users $user)
+    {
+        $active = 1;
+        if($request->active === 'false'){
+            $active = 0;
+        }
+        $user->activeStudent($request->id, $active);
+    }
+
     public function index()
     {
         return view('students.index');
@@ -32,6 +41,11 @@ class StudentController extends Controller
                 return view('elements.name_detail', [
                     'model' => $data,
                     'url_edit' => route('student.detail', $data->id),
+                ]);
+            })
+            ->addColumn('verify', function ($data) {
+                return view('elements.active_student', [
+                    'data'=>$data
                 ]);
             })
             ->addColumn('action', function ($data) {

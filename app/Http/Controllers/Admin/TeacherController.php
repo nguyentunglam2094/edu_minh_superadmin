@@ -45,7 +45,8 @@ class TeacherController extends Controller
             'name'=>'required|max:255',
             'phone'=>'required|max:15|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
             'email'=>'required|email|max:255|unique:teachers,email',
-            'subject'=>'required|exists:subjects,id'
+            'subject'=>'required|exists:subjects,id',
+            'description'=>'required'
         ]);
         try{
             $teachers->createTeacher($request);
@@ -67,7 +68,9 @@ class TeacherController extends Controller
             'name'=>'required|max:255',
             'phone'=>'required|max:15|min:10|regex:/^([0-9\s\-\+\(\)]*)$/',
             'email'=>'required|email|max:255|unique:teachers,email,'.$request->teacher_id,
-            'subject'=>'required|exists:subjects,id'
+            'subject'=>'required|exists:subjects,id',
+            'description'=>'required'
+
         ]);
         try{
             $teachers->updateTeacher($request);

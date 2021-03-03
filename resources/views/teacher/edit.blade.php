@@ -9,6 +9,8 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/pickadate/lib/themes/default.date.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/pickadate/lib/themes/default.time.css') }}">
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/ckeditor/samples/css/samples.css') }}">
 
 @endsection
 @section('bread')
@@ -100,6 +102,15 @@
                                         @endif
                                     </div>
                                 </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="name">Mô tả chi tiết</label>
+                                        <textarea name="description" id="ckeditor" cols="50" rows="15" class="ckeditor">{{ $teacher->description }}</textarea>
+                                        @if($errors->has('description'))
+                                            <div class="invalid-feedback">{{ $errors->first('description') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -133,6 +144,8 @@
 <script src="{{ asset('xtreme/assets/libs/pickadate/lib/compressed/picker.time.js') }}"></script>
 <script src="{{ asset('xtreme/assets/libs/pickadate/lib/compressed/legacy.js') }}"></script>
 <script src="{{ asset('xtreme/assets/libs/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('xtreme/assets/libs/ckeditor/ckeditor.js') }}"></script>
+<script src=" {{ asset('xtreme/assets/libs/ckeditor/samples/js/sample.js') }}"></script>
 <script>
     $('#start_at, #end_at').pickatime({
 

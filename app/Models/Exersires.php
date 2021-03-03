@@ -9,7 +9,7 @@ class Exersires extends Model
 {
     //
     protected $table = 'exercises';
-    protected $fillable = ['code', 'image_answer', 'exercises_type_id' ,'image_question', 'answer', 'selected_question'];
+    protected $fillable = ['code', 'image_answer', 'exercises_type_id' ,'image_question', 'answer', 'question', 'selected_question'];
 
     public function typeExercire()
     {
@@ -25,6 +25,7 @@ class Exersires extends Model
     {
         $data = [
             'code'=>Ultilities::clearXSS($request->code),
+            // 'question'=>$request->ckeditor,
             'exercises_type_id'=>Ultilities::clearXSS($request->type),
             'selected_question'=>Ultilities::clearXSS($request->answer_select),
         ];

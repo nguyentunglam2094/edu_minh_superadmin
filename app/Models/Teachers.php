@@ -47,6 +47,7 @@ class Teachers extends Authenticatable
             'email'=>Ultilities::clearXSS($request->email),
             'subject_id'=>Ultilities::clearXSS($request->subject),
             'address'=>Ultilities::clearXSS($request->address),
+            'description'=>Ultilities::clearXSS($request->description),
             'password'=>bcrypt('123456'),
         ];
         if($request->hasFile('image')){
@@ -68,6 +69,7 @@ class Teachers extends Authenticatable
             'subject_id'=>Ultilities::clearXSS($request->subject),
             'address'=>Ultilities::clearXSS($request->address),
             'password'=>bcrypt('123456'),
+            'description'=>Ultilities::clearXSS($request->description),
         ];
         if($request->hasFile('image')){
             $files = $request->file('image');
@@ -76,6 +78,6 @@ class Teachers extends Authenticatable
             ];
             $data += $plus;
         }
-        return $this->where($this->primaryKey, $request->id)->update($data);
+        return $this->where($this->primaryKey, $request->teacher_id)->update($data);
     }
 }

@@ -19,7 +19,7 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-center font-weight-bold">Add test</h3>
+                    <h3 class="card-title text-center font-weight-bold">Thêm bài thi</h3>
                     <form class="mt-4" method="POST" action="{{ route('add.test') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
@@ -30,7 +30,7 @@
                                 <div class="col-lg-6">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label>Choose file pdf</label><br>
+                                            <label>Chọn file đề thi</label><br>
                                             {{-- <input type="file" name="image" id="image" accept="image/*"> --}}
                                             <input type="file" name="image" id="image">
                                         </div>
@@ -43,19 +43,19 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Title <span class="text-danger">*</span></label>
+                                        <label for="name">Tên đề thi <span class="text-danger">*</span></label>
                                         @if($errors->has('title'))
-                                            <input type="text" class="form-control is-invalid"  placeholder="Tiêu đề dạng bài tập" name="title" value="{{ old('title') }}"  >
+                                            <input type="text" class="form-control is-invalid"  placeholder="Tên đề thi" name="title" value="{{ old('title') }}"  >
                                             <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                                         @else
-                                            <input type="text" class="form-control" placeholder="Tiêu đề dạng bài tập" name="title" value="{{ old('title') }}" >
+                                            <input type="text" class="form-control" placeholder="Tên đề thi" name="title" value="{{ old('title') }}" >
                                         @endif
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Subject <span class="text-danger">*</span></label>
+                                        <label for="name">Môn học <span class="text-danger">*</span></label>
                                         <select class="select2 form-control custom-select" name="subject_id" id="subject_id" style="width: 100%; height:36px;">
                                             @foreach ($listSubject as $subj)
                                                 <option value="{{ $subj->id }}" {{ old('subject_id') == $subj->id ? 'selected' : '' }}>{{ $subj->title }}</option>
@@ -69,7 +69,7 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Class <span class="text-danger">*</span></label>
+                                        <label for="name">Lớp <span class="text-danger">*</span></label>
                                         <select class="select2 form-control custom-select" name="class_id" style="width: 100%; height:36px;">
                                             @foreach ($listClass as $class)
                                                 <option value="{{ $class->id }}" {{ old('class_id') == $class->id ? 'selected' : '' }}>{{ $class->title }}</option>
@@ -83,19 +83,19 @@
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Question number</label>
+                                        <label for="name">Số lượng câu hỏi</label>
                                         @if($errors->has('question_number'))
-                                            <input type="text" class="form-control is-invalid" placeholder="question number" name="question_number" value="{{ old('question_number') }}" >
+                                            <input type="text" class="form-control is-invalid" placeholder="Số lượng câu hỏi" name="question_number" value="{{ old('question_number') }}" >
                                             <div class="invalid-feedback">{{ $errors->first('question_number') }}</div>
                                         @else
-                                            <input type="text" class="form-control" placeholder="question_number" name="question number" value="{{ old('question_number') }}" >
+                                            <input type="text" class="form-control" placeholder="question_number" name="Số lượng câu hỏi" value="{{ old('question_number') }}" >
                                         @endif
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Minute max</label>
+                                        <label for="name">Thời gian làm bài</label>
                                         @if($errors->has('min'))
                                             <input type="text" class="form-control is-invalid" name="min" value="{{ old('min') }}" >
                                             <div class="invalid-feedback">{{ $errors->first('min') }}</div>
@@ -109,8 +109,8 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save and add answers</button>
-                        <a href="" class="btn btn-dark">Cancel</a>
+                        <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Lưu và thêm câu trả lời</button>
+                        <a href="" class="btn btn-dark">Hủy</a>
                     </div>
                 </form>
                 </div>

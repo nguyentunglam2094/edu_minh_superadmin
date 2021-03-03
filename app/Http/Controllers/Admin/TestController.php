@@ -26,6 +26,13 @@ class TestController extends Controller
         }
     }
 
+    public function uploadImgAns(Request $request, TestAnswers $testAnswers)
+    {
+        if($request->ajax()){
+            $testAnswers->updateImageAns($request);
+        }
+    }
+
     public function addTestOnline(Subject $subject, Classes $classes)
     {
         $listClass = $classes->getClass();

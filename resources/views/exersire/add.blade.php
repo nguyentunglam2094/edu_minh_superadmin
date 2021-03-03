@@ -10,6 +10,11 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/pickadate/lib/themes/default.time.css') }}">
 <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 
+<link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/ckeditor/samples/css/samples.css') }}">
+<!-- Custom CSS -->
+<link href="{{ asset('xtreme/dist/css/style.min.css') }}" rel="stylesheet">
+
 @endsection
 @section('bread')
 
@@ -63,10 +68,20 @@
                             </div>
                         </div>
 
+                        {{-- <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Nội dung câu hỏi</h4>
+                                    <div class="form-group">
+                                        <textarea name="ckeditor" id="ckeditor" cols="50" rows="15" class="ckeditor"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> --}}
+
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="form-group">
 								<label>Chọn ảnh bài tập</label><br>
-								{{-- <input type="file" name="image" id="image" accept="image/*"> --}}
 								<input type="file" name="image_question" id="image_question">
                             </div>
                             <span class="text-danger" id="error-image" style="display:none;"></span>
@@ -80,7 +95,7 @@
 
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="form-group">
-								<label>Chọn ảnh bài tập</label><br>
+								<label>Chọn ảnh lời giải bài tập</label><br>
 								{{-- <input type="file" name="image" id="image" accept="image/*"> --}}
 								<input type="file" name="image_answer" id="image_answer">
                             </div>
@@ -109,29 +124,54 @@
 <script src="{{ asset('xtreme/assets/libs/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('xtreme/assets/libs/select2/dist/js/select2.min.js') }}"></script>
 <script src="{{ asset('xtreme/dist/js/pages/forms/select2/select2.init.js') }}"></script>
-<script src="{{ asset('xtreme/assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min.js') }}"></script>
-
-<script src="{{ asset('/xtreme/assets/libs/bootstrap-switch/dist/js/bootstrap-switch.min.js') }}"></script>
-<script src="{{ asset('/xtreme/dist/js/app-style-switcher.js') }}"></script>
 
 <!-- This Page JS -->
-<script src="{{ asset('xtreme/assets/libs/moment/moment.js') }}"></script>
-<script src="{{ asset('xtreme/assets/libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-
-<script src="{{ asset('xtreme/assets/libs/pickadate/lib/compressed/picker.js') }}"></script>
-<script src="{{ asset('xtreme/assets/libs/pickadate/lib/compressed/picker.date.js') }}"></script>
-<script src="{{ asset('xtreme/assets/libs/pickadate/lib/compressed/picker.time.js') }}"></script>
-<script src="{{ asset('xtreme/assets/libs/pickadate/lib/compressed/legacy.js') }}"></script>
-<script src="{{ asset('xtreme/assets/libs/daterangepicker/daterangepicker.js') }}"></script>
+<script src="{{ asset('xtreme/assets/libs/ckeditor/ckeditor.js') }}"></script>
+<script src="{{ asset('xtreme/assets/libs/ckeditor/samples/js/sample.js') }}"></script>
+<script src="{{ asset('xtreme/dist/js/custom.min.js') }}"></script>
 
 
 <script>
     $('#start_at, #end_at').pickatime({
+        interval: 15,
+        format: 'H:i',
+	});
+</script>
 
-  				interval: 15,
-  				format: 'H:i',
-			});
+<script>
+    initSample();
 
+    //inline editor
+    // We need to turn off the automatic editor creation first.
+    CKEDITOR.disableAutoInline = true;
+
+    CKEDITOR.inline('editor2', {
+        extraPlugins: 'sourcedialog',
+        removePlugins: 'sourcearea'
+    });
+
+    var editor1 = CKEDITOR.replace('editor1', {
+        extraAllowedContent: 'div',
+        height: 460
+    });
+    editor1.on('instanceReady', function() {
+        // Output self-closing tags the HTML4 way, like <br>.
+        this.dataProcessor.writer.selfClosingEnd = '>';
+
+        // Use line breaks for block elements, tables, and lists.
+        var dtd = CKEDITOR.dtd;
+        for (var e in CKEDITOR.tools.extend({}, dtd.$nonBodyContent, dtd.$block, dtd.$listItem, dtd.$tableContent)) {
+            this.dataProcessor.writer.setRules(e, {
+                indent: true,
+                breakBeforeOpen: true,
+                breakAfterOpen: true,
+                breakBeforeClose: true,
+                breakAfterClose: true
+            });
+        }
+        // Start in source mode.
+        this.setMode('source');
+    });
 </script>
 
 <script type="text/javascript">

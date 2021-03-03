@@ -1,5 +1,5 @@
 @extends('layouts.app1')
-@section('title_for_layout','Dạng bài tập')
+@section('title_for_layout','chủ đề')
 @section('css')
     <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
@@ -17,11 +17,11 @@
             <div class="card">
                 <div class="card-body">
                     <div class="heading">
-                        <h2 class="text-center mb-4">Danh sách dạng bài tập</h2>
+                        <h2 class="text-center mb-4">Danh sách chủ đề</h2>
                     </div>
                     <div class="row mb-4">
                         <div class="col-lg-12 text-right">
-                            <a href="{{ route('view.add.type') }}" class="btn waves-effect waves-light btn-success btn-add"><i class="fas fa-plus"></i>Thêm dạng bài tập</a>
+                            <a href="{{ route('view.add.themes') }}" class="btn waves-effect waves-light btn-success btn-add"><i class="fas fa-plus"></i>Thêm mới chủ đề</a>
                           </div>
                     </div>
 
@@ -33,6 +33,7 @@
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Description</th>
+                                    <th>subject</th>
                                     <th width="14%">Actions</th>
                                 </tr>
                             </thead>
@@ -62,7 +63,7 @@
                 "order": [[ 0, "descriptionc" ]],
                 ajax : {
                     type: 'get',
-                    url: '{{ route('datatable.exersire.type') }}',
+                    url: '{{ route('datatable.themes') }}',
                 },
                 columns:[
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', searchable: false, width: '5%',className:'text-center align-middle'},
@@ -74,6 +75,7 @@
                     }},
                     { data: 'title', name: 'title'},
                     { data: 'description', name: 'description'},
+                    { data: 'subject', name: 'subject', width: '14%',className: 'text-center align-middle' },
                     {data: 'action', name: 'action',width: '15%',className: 'text-center align-middle',orderable: false,searchable: false},
                 ]
             });

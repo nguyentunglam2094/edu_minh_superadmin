@@ -1,5 +1,5 @@
 @extends('layouts.app1')
-@section('title_for_layout','Add teacher')
+@section('title_for_layout','Sửa dạng bài tập')
 @section('css')
 <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/select2/dist/css/select2.min.css') }}">
 <link rel="stylesheet" href="{{ asset('/xtreme/assets/libs/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css') }}">
@@ -13,7 +13,6 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('xtreme/assets/libs/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('assets/libs/ckeditor/samples/css/samples.css') }}">
 
-
 @endsection
 @section('bread')
 
@@ -23,13 +22,14 @@
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="card-title text-center font-weight-bold">Thêm giáo viên</h3>
-                    <form class="mt-4" method="POST" action="{{ route('add.teacher') }}" enctype="multipart/form-data">
+                    <h3 class="card-title text-center font-weight-bold">Dạng bài tập</h3>
+                    <form class="mt-4" method="POST" action="" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="type_id" value="{{ $detail->id }}">
                     <div class="row">
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="form-group">
-								<label>Choose avatar</label><br>
+								<label>Choose image</label><br>
 								{{-- <input type="file" name="image" id="image" accept="image/*"> --}}
 								<input type="file" name="image" id="image">
                             </div>
@@ -38,7 +38,7 @@
 							<span class="text-danger pt-2 error-image">{{ $errors->first('image') }}</span>
 							@endif
 							<div class="preview-image mb-2">
-								<img id="ImgPreview" src="{{ asset('img/no-image.jpg') }}" class="img-fluid avatar" alt="">
+								<img id="ImgPreview" src="{{ $detail->image }}" class="img-fluid avatar" alt="">
 							</div>
                         </div>
 
@@ -47,67 +47,49 @@
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Teacher name <span class="text-danger">*</span></label>
-                                        @if($errors->has('name'))
-                                            <input type="text" class="form-control is-invalid"  placeholder="Teacher name" name="name" value="{{ old('name') }}"  >
-                                            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                        <label for="name">Tiêu đề <span class="text-danger">*</span></label>
+                                        @if($errors->has('title'))
+                                            <input type="text" class="form-control is-invalid"  name="title" value="{{ $detail->title }}"  >
+                                            <div class="invalid-feedback">{{ $errors->first('title') }}</div>
                                         @else
-                                            <input type="text" class="form-control" placeholder="Teacher name" name="name" value="{{ old('name') }}" >
+                                            <input type="text" class="form-control" name="title" value="{{ $detail->title }}" >
                                         @endif
                                     </div>
                                 </div>
 
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Subject <span class="text-danger">*</span></label>
-                                        <select class="select2 form-control custom-select" name="subject" id="subject" style="width: 100%; height:36px;">
+                                        <label for="name">Môn học <span class="text-danger">*</span></label>
+                                        <select class="select2 form-control custom-select" name="subject_id" id="subject_id" style="width: 100%; height:36px;">
                                             @foreach ($listSubject as $subj)
-                                                <option value="{{ $subj->id }}" {{ old('subject') == $subj->id ? 'selected' : '' }}>{{ $subj->title }}</option>
+                                                <option value="{{ $subj->id }}" {{ $detail->subject_id == $subj->id ? 'selected' : '' }}>{{ $subj->title }}</option>
                                             @endforeach
                                         </select>
-                                    @if($errors->has('subject'))
-                                    <div class="invalid-feedback">{{ $errors->first('subject') }}</div>
+                                    @if($errors->has('subject_id'))
+                                    <div class="invalid-feedback">{{ $errors->first('subject_id') }}</div>
                                     @endif
                                     </div>
                                 </div>
+
                                 <div class="col-lg-6">
                                     <div class="form-group">
-                                        <label for="name">Phone number<span class="text-danger">*</span></label>
-                                        @if($errors->has('phone'))
-                                            <input type="text" class="form-control is-invalid"  placeholder="Phone number" name="phone" value="{{ old('phone') }}" >
-                                            <div class="invalid-feedback">{{ $errors->first('phone') }}</div>
-                                        @else
-                                            <input type="text" class="form-control" placeholder="Phone number" name="phone" value="{{ old('phone') }}">
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="name">Email <span class="text-danger">*</span></label>
-                                        @if($errors->has('email'))
-                                            <input type="text" class="form-control is-invalid"  placeholder="email" name="email" value="{{ old('email') }}" >
-                                            <div class="invalid-feedback">{{ $errors->first('email') }}</div>
-                                        @else
-                                            <input type="text" class="form-control" placeholder="email" name="email" value="{{ old('email') }}" >
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="form-group">
-                                        <label for="name">Address</label>
-                                        @if($errors->has('address'))
-                                            <input type="text" class="form-control is-invalid"  placeholder="address" name="address" value="{{ old('address') }}" >
-                                            <div class="invalid-feedback">{{ $errors->first('address') }}</div>
-                                        @else
-                                            <input type="text" class="form-control" placeholder="address" name="address" value="{{ old('address') }}" >
-                                        @endif
+                                        <label for="name">Lớp <span class="text-danger">*</span></label>
+                                        <select class="select2 form-control custom-select" name="class_id" style="width: 100%; height:36px;">
+                                            @foreach ($listClass as $class)
+                                                <option value="{{ $class->id }}" {{ $detail->class_id == $class->id ? 'selected' : '' }}>{{ $class->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    @if($errors->has('class_id'))
+                                    <div class="invalid-feedback">{{ $errors->first('class_id') }}</div>
+                                    @endif
                                     </div>
                                 </div>
 
+
                                 <div class="col-lg-12">
                                     <div class="form-group">
-                                        <label for="name">Mô tả chi tiết</label>
-                                        <textarea name="description" id="ckeditor" cols="50" rows="15" class="ckeditor">{{ old('description') }}</textarea>
+                                        <label for="name">Mô tả</label>
+                                        <textarea name="description" id="ckeditor" cols="50" rows="15" class="ckeditor">{!! $detail->description !!}</textarea>
                                         @if($errors->has('description'))
                                             <div class="invalid-feedback">{{ $errors->first('description') }}</div>
                                         @endif
@@ -115,7 +97,6 @@
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
                     <div class="text-center">
@@ -150,6 +131,7 @@
 
 <script src="{{ asset('xtreme/assets/libs/ckeditor/ckeditor.js') }}"></script>
 <script src=" {{ asset('xtreme/assets/libs/ckeditor/samples/js/sample.js') }}"></script>
+
 <script>
     $('#start_at, #end_at').pickatime({
 
@@ -158,6 +140,44 @@
 			});
 
 </script>
+
+<script>
+    //default
+    initSample();
+
+    //inline editor
+    // We need to turn off the automatic editor creation first.
+    CKEDITOR.disableAutoInline = true;
+
+    CKEDITOR.inline('editor2', {
+        extraPlugins: 'sourcedialog',
+        removePlugins: 'sourcearea'
+    });
+
+    var editor1 = CKEDITOR.replace('editor1', {
+        extraAllowedContent: 'div',
+        height: 460
+    });
+    editor1.on('instanceReady', function() {
+        // Output self-closing tags the HTML4 way, like <br>.
+        this.dataProcessor.writer.selfClosingEnd = '>';
+
+        // Use line breaks for block elements, tables, and lists.
+        var dtd = CKEDITOR.dtd;
+        for (var e in CKEDITOR.tools.extend({}, dtd.$nonBodyContent, dtd.$block, dtd.$listItem, dtd.$tableContent)) {
+            this.dataProcessor.writer.setRules(e, {
+                indent: true,
+                breakBeforeOpen: true,
+                breakAfterOpen: true,
+                breakBeforeClose: true,
+                breakAfterClose: true
+            });
+        }
+        // Start in source mode.
+        this.setMode('source');
+    });
+    </script>
+
 
 <script type="text/javascript">
 	$(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();

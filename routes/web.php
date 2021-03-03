@@ -45,6 +45,7 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::get('/', 'StudentController@index')->name('index.student');
         route::get('/datatable-teacher', 'StudentController@datatable')->name('datatable.student');
         route::get('/student-detail/{id}', 'StudentController@detail')->name('student.detail');
+        route::post('/active-student', 'StudentController@activeStudent')->name('active.student');
     });
 
     Route::group(['prefix' => 'test'], function () {
@@ -54,15 +55,25 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::post('/add-test', 'TestController@createTest')->name('add.test');
         route::get('/answer/{id}','TestController@viewTestAnswers')->name('answer.test');
         route::get('/update-answer', 'TestController@updateAnswer')->name('update.answer.test');
+        route::post('/upload-answer', 'TestController@uploadImgAns')->name('upload.image.ans');
     });
 
-    Route::group(['prefix' => 'exersire'], function () {
+    Route::group(['prefix' => 'exersire-type'], function () {
         route::get('/exersire-type', 'ExerciseTypeController@index')->name('index.exersire.type');
         route::get('/datatable-type-exersire', 'ExerciseTypeController@datatable')->name('datatable.exersire.type');
         route::get('/create-ex-type', 'ExerciseTypeController@viewAdd')->name('view.add.type');
         route::post('/create-ex-type', 'ExerciseTypeController@createType')->name('add.type');
         route::get('/edit-ex-type/{id}', 'ExerciseTypeController@viewEdit')->name('view.edit.type');
         route::post('/edit-ex-type', 'ExerciseTypeController@updateType')->name('edit.type');
+    });
+
+    Route::group(['prefix' => 'chu-de'], function () {
+        route::get('/', 'ThemesController@index')->name('index.themes');
+        route::get('/datatable-themes', 'ThemesController@datatable')->name('datatable.themes');
+        route::get('/create-themes', 'ThemesController@viewAdd')->name('view.add.themes');
+        route::post('/create-themes', 'ThemesController@createThemes')->name('add.themes');
+        route::get('/edit-themes/{id}', 'ThemesController@viewEdit')->name('view.edit.themes');
+        route::post('/edit-themes', 'ThemesController@updateThemes')->name('edit.themes');
     });
 
 });

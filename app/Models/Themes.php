@@ -5,25 +5,15 @@ namespace App\Models;
 use App\Libraries\Ultilities;
 use Illuminate\Database\Eloquent\Model;
 
-class ExerciseType extends Model
+class Themes extends Model
 {
     //
-    protected $table = 'exercise_type';
-    protected $fillable = ['subject_id', 'class_id', 'title', 'description', 'image', 'theme_id'];
+    protected $table = 'themes';
+    protected $fillable = ['subject_id', 'class_id', 'title', 'description', 'image'];
 
     public function subject()
     {
         return $this->hasOne(Subject::class, 'id', 'subject_id');
-    }
-
-    public function theme()
-    {
-        return $this->hasOne(Themes::class, 'id', 'theme_id');
-    }
-
-    public function getTypeEx()
-    {
-        return $this->get();
     }
 
     public function detail($id)
@@ -31,14 +21,18 @@ class ExerciseType extends Model
         return $this->where($this->primaryKey, $id)->first();
     }
 
+    public function getTypeEx()
+    {
+        return $this->get();
+    }
+
     public function createNewTypeEx($request)
     {
         $data = [
+            'subject_id'=>Ultilities::clearXSS($request->subject_id),
             'title'=>Ultilities::clearXSS($request->title),
-            'theme_id'=>Ultilities::clearXSS($request->theme_id),
+            'class_id'=>Ultilities::clearXSS($request->class_id),
             'description'=>Ultilities::clearXSS($request->description),
-            'subject_id'=>0,
-            'class_id'=>0,
         ];
         if($request->hasFile('image')){
             $files = $request->file('image');
@@ -53,11 +47,10 @@ class ExerciseType extends Model
     public function updateTypeEx($request)
     {
         $data = [
+            'subject_id'=>Ultilities::clearXSS($request->subject_id),
             'title'=>Ultilities::clearXSS($request->title),
-            'subject_id'=>0,
-            'class_id'=>0,
+            'class_id'=>Ultilities::clearXSS($request->class_id),
             'description'=>Ultilities::clearXSS($request->description),
-            'theme_id'=>Ultilities::clearXSS($request->theme_id),
         ];
         if($request->hasFile('image')){
             $files = $request->file('image');
@@ -68,5 +61,4 @@ class ExerciseType extends Model
         }
         return $this->where($this->primaryKey, $request->type_id)->update($data);
     }
-
 }

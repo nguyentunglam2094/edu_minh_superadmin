@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Classes;
 use App\Models\ExerciseType;
 use App\Models\Subject;
+use App\Models\Themes;
 use Exception;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -23,8 +24,7 @@ class ExerciseTypeController extends Controller
     {
         $request->validate([
             'title'=>'required|max:255|string',
-            'subject_id'=>'required|exists:subjects,id',
-            'class_id'=>'required|exists:classes,id',
+            'theme_id'=>'required|exists:themes,id',
             'description'=>'required',
         ]);
         try{
@@ -37,24 +37,20 @@ class ExerciseTypeController extends Controller
         }
     }
 
-    public function viewAdd(Subject $subject, Classes $classes)
+    public function viewAdd(Themes $themes)
     {
-        $listClass = $classes->getClass();
-        $listSubject = $subject->getSubject();
+        $list = $themes->getTypeEx();
         return view('ExersireType.add')->with([
-            'listSubject'=>$listSubject,
-            'listClass'=>$listClass,
+            'list'=>$list,
         ]);
     }
 
-    public function viewEdit(Subject $subject, Classes $classes, ExerciseType $exerciseType, $id)
+    public function viewEdit(Themes $themes, ExerciseType $exerciseType, $id)
     {
         $detail = $exerciseType->detail($id);
-        $listClass = $classes->getClass();
-        $listSubject = $subject->getSubject();
+        $list = $themes->getTypeEx();
         return view('ExersireType.edit')->with([
-            'listSubject'=>$listSubject,
-            'listClass'=>$listClass,
+            'list'=>$list,
             'detail'=>$detail,
         ]);
     }
@@ -64,8 +60,7 @@ class ExerciseTypeController extends Controller
         $request->validate([
             'type_id'=>'required|exists:exercise_type,id',
             'title'=>'required|max:255|string',
-            'subject_id'=>'required|exists:subjects,id',
-            'class_id'=>'required|exists:classes,id',
+            'theme_id'=>'required|exists:themes,id',
             'description'=>'required',
         ]);
         try{
