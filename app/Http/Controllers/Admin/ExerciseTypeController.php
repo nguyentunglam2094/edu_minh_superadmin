@@ -26,6 +26,7 @@ class ExerciseTypeController extends Controller
             'title'=>'required|max:255|string',
             'theme_id'=>'required|exists:themes,id',
             'description'=>'required',
+            'code'=>'required|unique:exercise_type,code'
         ]);
         try{
             $exerciseType->createNewTypeEx($request);
@@ -62,6 +63,7 @@ class ExerciseTypeController extends Controller
             'title'=>'required|max:255|string',
             'theme_id'=>'required|exists:themes,id',
             'description'=>'required',
+            'code'=>'required|unique:exercise_type,code,'.$request->type_id
         ]);
         try{
             $exerciseType->updateTypeEx($request);

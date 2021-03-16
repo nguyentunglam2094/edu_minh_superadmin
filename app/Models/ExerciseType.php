@@ -9,7 +9,7 @@ class ExerciseType extends Model
 {
     //
     protected $table = 'exercise_type';
-    protected $fillable = ['subject_id', 'class_id', 'title', 'description', 'image', 'theme_id'];
+    protected $fillable = ['subject_id','code', 'class_id', 'title', 'description', 'image', 'theme_id'];
 
     public function subject()
     {
@@ -37,6 +37,7 @@ class ExerciseType extends Model
             'title'=>Ultilities::clearXSS($request->title),
             'theme_id'=>Ultilities::clearXSS($request->theme_id),
             'description'=>Ultilities::clearXSS($request->description),
+            'code'=>Ultilities::clearXSS($request->code),
             'subject_id'=>0,
             'class_id'=>0,
         ];
@@ -58,6 +59,7 @@ class ExerciseType extends Model
             'class_id'=>0,
             'description'=>Ultilities::clearXSS($request->description),
             'theme_id'=>Ultilities::clearXSS($request->theme_id),
+            'code'=>Ultilities::clearXSS($request->code),
         ];
         if($request->hasFile('image')){
             $files = $request->file('image');

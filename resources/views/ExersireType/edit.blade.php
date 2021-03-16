@@ -47,7 +47,19 @@
                         <div class="col-lg-9 col-md-9 col-sm-6">
                             {{-- <div class="row midtext"><h3>Add food</h3></div> --}}
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="name">Mã dạng bài <span class="text-danger">*</span></label>
+                                        @if($errors->has('code'))
+                                            <input type="text" class="form-control is-invalid"  placeholder="Mã dạng bài tập" name="code" value="{{ $detail->code }}"  >
+                                            <div class="invalid-feedback">{{ $errors->first('code') }}</div>
+                                        @else
+                                            <input type="text" class="form-control" placeholder="Mã dạng bài tập" name="code" value="{{ $detail->code }}" >
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="name">Tiêu đề <span class="text-danger">*</span></label>
                                         @if($errors->has('title'))
@@ -59,7 +71,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="name">Chủ đề <span class="text-danger">*</span></label>
                                         <select class="select2 form-control custom-select" name="theme_id" style="width: 100%; height:36px;">
