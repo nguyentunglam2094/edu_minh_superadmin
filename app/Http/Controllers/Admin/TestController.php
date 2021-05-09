@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Models\Subject;
 use App\Models\TestAnswers;
 use App\Models\Tests;
+use App\Models\UserAnswer;
 use Exception;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -43,15 +44,18 @@ class TestController extends Controller
         ]);
     }
 
-    public function viewTestAnswers(Tests $test, Subject $subject, Classes $classes, TestAnswers $testAnswers, $id)
+    public function viewTestAnswers(Tests $test, Subject $subject, Classes $classes, TestAnswers $testAnswers, UserAnswer $userAnswer, $id)
     {
         $detail = $test->getDetailTest($id);
         $listClass = $classes->getClass();
         $listSubject = $subject->getSubject();
+        $answerList = $userAnswer->getAnswer($id);
+
         return view('Test.answers')->with([
             'detail'=>$detail,
             'listSubject'=>$listSubject,
             'listClass'=>$listClass,
+            'answerList'=>$answerList,
         ]);
     }
 
