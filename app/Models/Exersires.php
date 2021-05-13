@@ -9,7 +9,9 @@ class Exersires extends Model
 {
     //
     protected $table = 'exercises';
-    protected $fillable = ['code', 'image_answer', 'exercises_type_id' ,'image_question', 'answer', 'question', 'selected_question'];
+    protected $fillable = ['code', 'image_answer', 'exercises_type_id' ,'image_question',
+     'answer', 'question', 'selected_question',
+    'class_id', 'subject_id'];
 
     public function typeExercire()
     {
@@ -21,28 +23,49 @@ class Exersires extends Model
         return $this->with('typeExercire')->orderBy('id','desc')->get();
     }
 
+    public function subject()
+    {
+        return $this->hasOne(Subject::class, 'id', 'subject_id');
+    }
+
+    public function class()
+    {
+        return $this->hasOne(Classes::class, 'id', 'class_id');
+    }
+
+    public function getDetailById($id)
+    {
+        return $this->with(['subject', 'class'])->where($this->primaryKey, $id)->first();
+    }
+
     public function createEx($request)
     {
         $data = [
             'code'=>Ultilities::clearXSS($request->code),
-            // 'question'=>$request->ckeditor,
-            'exercises_type_id'=>Ultilities::clearXSS($request->type),
+            'question'=>$request->question,
+            'exercises_type_id'=>0,
             'selected_question'=>Ultilities::clearXSS($request->answer_select),
+            'image_question'=>Ultilities::clearXSS($request->image_question),
+            'image_answer'=>Ultilities::clearXSS($request->image_answer),
+            'subject_id'=>Ultilities::clearXSS($request->subject_id),
+            'class_id'=>Ultilities::clearXSS($request->class_id),
         ];
-        if($request->hasFile('image_question')){
-            $files = $request->file('image_question');
-            $plus = [
-                'image_question'=>Ultilities::uploadFile($files),
-            ];
-            $data += $plus;
-        }
-        if($request->hasFile('image_answer')){
-            $files = $request->file('image_answer');
-            $plus = [
-                'image_answer'=>Ultilities::uploadFile($files),
-            ];
-            $data += $plus;
-        }
+
         return $this->create($data);
+    }
+
+    public function updateEx($request)
+    {
+        $data = [
+            'code'=>Ultilities::clearXSS($request->code),
+            'question'=>$request->question,
+            'exercises_type_id'=>0,
+            'selected_question'=>Ultilities::clearXSS($request->answer_select),
+            'image_question'=>Ultilities::clearXSS($request->image_question),
+            'image_answer'=>Ultilities::clearXSS($request->image_answer),
+            'subject_id'=>Ultilities::clearXSS($request->subject_id),
+            'class_id'=>Ultilities::clearXSS($request->class_id),
+        ];
+        return $this->where($this->primaryKey, $request->id)->update($data);
     }
 }

@@ -25,19 +25,19 @@
             <div class="card">
                 <div class="card-body">
                     <meta name="csrf-token" content="{{ csrf_token() }}">
-                    <h3 class="card-title text-center font-weight-bold">Thêm bài tập</h3>
-                    <form class="mt-4" method="POST" action="{{ route('add.exersire') }}" enctype="multipart/form-data">
+                    <h3 class="card-title text-center font-weight-bold">Sửa bài tập</h3>
+                    <form class="mt-4" method="POST" action="{{ route('update.exer') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-
+                        <input type="hidden" name="id" value="{{ $detailEx->id }}">
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="name">Tiêu đề <span class="text-danger">*</span></label>
                                 @if($errors->has('question'))
-                                    <input type="text" class="form-control is-invalid"  placeholder="Nhập tiêu đề bài tập" name="question" value="{{ old('question') }}"  >
+                                    <input type="text" class="form-control is-invalid"  placeholder="Nhập tiêu đề bài tập" name="question" value="{{ $detailEx->question }}"  >
                                     <div class="invalid-feedback">{{ $errors->first('question') }}</div>
                                 @else
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề bài tập" name="question" value="{{ old('question') }}" >
+                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề bài tập" name="question" value="{{ $detailEx->question }}" >
                                 @endif
                             </div>
                         </div>
@@ -46,10 +46,10 @@
                             <div class="form-group">
                                 <label for="name">Mã bài tập <span class="text-danger">*</span></label>
                                 @if($errors->has('code'))
-                                    <input type="text" class="form-control is-invalid"  placeholder="Nhập code bài tập" name="code" value="{{ old('code') }}"  >
+                                    <input type="text" class="form-control is-invalid"  placeholder="Nhập code bài tập" name="code" value="{{ $detailEx->code }}"  >
                                     <div class="invalid-feedback">{{ $errors->first('code') }}</div>
                                 @else
-                                    <input type="text" class="form-control" placeholder="Nhập code bài tập" name="code" value="{{ old('code') }}" >
+                                    <input type="text" class="form-control" placeholder="Nhập code bài tập" name="code" value="{{ $detailEx->code }}" >
                                 @endif
                             </div>
                         </div>
@@ -58,10 +58,10 @@
                             <div class="form-group">
                                 <label for="name">Chọn đáp án đúng<span class="text-danger">*</span></label>
                                 <select class="select2 form-control custom-select" name="answer_select" id="answer_select" style="width: 100%; height:36px;">
-                                    <option value="1" {{ old('answer_select') == 1 ? 'selected' : '' }}>Đáp án A</option>
-                                    <option value="2" {{ old('answer_select') == 2 ? 'selected' : '' }}>Đáp án B</option>
-                                    <option value="3" {{ old('answer_select') == 3 ? 'selected' : '' }}>Đáp án C</option>
-                                    <option value="4" {{ old('answer_select') == 4 ? 'selected' : '' }}>Đáp án D</option>
+                                    <option value="1" {{ $detailEx->answer_select == 1 ? 'selected' : '' }}>Đáp án A</option>
+                                    <option value="2" {{ $detailEx->answer_select == 2 ? 'selected' : '' }}>Đáp án B</option>
+                                    <option value="3" {{ $detailEx->answer_select == 3 ? 'selected' : '' }}>Đáp án C</option>
+                                    <option value="4" {{ $detailEx->answer_select == 4 ? 'selected' : '' }}>Đáp án D</option>
                                 </select>
                             @if($errors->has('answer_select'))
                             <div class="invalid-feedback">{{ $errors->first('answer_select') }}</div>
@@ -69,13 +69,12 @@
                             </div>
                         </div>
 
-
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">Chọn lớp<span class="text-danger">*</span></label>
                                 <select class="select2 form-control custom-select" name="class_id" id="class_id" style="width: 100%; height:36px;">
                                     @foreach ($listClass as $class)
-                                    <option value="{{ $class->id }}" {{ old('class_id') == $class->id ? 'selected' : '' }}>{{ $class->title }}</option>
+                                    <option value="{{ $class->id }}" {{ $detailEx->class->id == $class->id ? 'selected' : '' }}>{{ $class->title }}</option>
                                     @endforeach
                                 </select>
                             @if($errors->has('class_id'))
@@ -89,7 +88,7 @@
                                 <label for="name">Chọn môn học<span class="text-danger">*</span></label>
                                 <select class="select2 form-control custom-select" name="subject_id" id="subject_id" style="width: 100%; height:36px;">
                                     @foreach ($listSubject as $subject)
-                                    <option value="{{ $subject->id }}" {{ old('subject_id') == $subject->id ? 'selected' : '' }}>{{ $subject->title }}</option>
+                                    <option value="{{ $subject->id }}" {{ $detailEx->subject->id == $subject->id ? 'selected' : '' }}>{{ $subject->title }}</option>
                                     @endforeach
                                 </select>
                             @if($errors->has('subject_id'))
@@ -98,15 +97,14 @@
                             </div>
                         </div>
 
-
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="name">Ảnh câu hỏi <span class="text-danger">*</span></label>
                                 @if($errors->has('image_question'))
-                                    <input type="text" class="form-control is-invalid" name="image_question" id="image_question" value="{{ old('image_question') }}"  >
+                                    <input type="text" class="form-control is-invalid" name="image_question" id="image_question" value="{{ $detailEx->image_question }}"  >
                                     <div class="invalid-feedback">{{ $errors->first('image_question') }}</div>
                                 @else
-                                    <input type="text" class="form-control" name="image_question" id="image_question" value="{{ old('image_question') }}" >
+                                    <input type="text" class="form-control" name="image_question" id="image_question" value="{{ $detailEx->image_question }}" >
                                 @endif
                             </div>
                         </div>
@@ -114,12 +112,29 @@
                             <div class="form-group">
                                 <label for="name">Ảnh câu trả lời <span class="text-danger">*</span></label>
                                 @if($errors->has('image_answer'))
-                                    <input type="text" class="form-control is-invalid" id="image_answer" name="image_answer" value="{{ old('image_answer') }}"  >
+                                    <input type="text" class="form-control is-invalid" id="image_answer" name="image_answer" value="{{ $detailEx->image_answer }}"  >
                                     <div class="invalid-feedback">{{ $errors->first('image_answer') }}</div>
                                 @else
-                                    <input type="text" class="form-control" id="image_answer" name="image_answer" value="{{ old('image_answer') }}" >
+                                    <input type="text" class="form-control" id="image_answer" name="image_answer" value="{{ $detailEx->image_answer }}" >
                                 @endif
                             </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group">
+								<label>Ảnh câu hỏi</label><br>
+                            </div>
+							<div class="preview-image mb-2">
+								<img src="{{ asset($detailEx->image_question) }}" class="img-fluid avatar" alt="">
+							</div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+								<label>Ảnh câu trả lời</label><br>
+                            </div>
+							<div class="preview-image mb-2">
+								<img src="{{ asset($detailEx->image_answer) }}" class="img-fluid avatar" alt="">
+							</div>
                         </div>
 
                     </div>

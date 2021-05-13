@@ -39,6 +39,10 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::get('/datatable-exercire', 'ExersireController@datatable')->name('datatable.exercire');
         route::get('/add-exersire', 'ExersireController@addExersire')->name('view.add.exersire');
         route::post('/add-exersire', 'ExersireController@createNewEx')->name('add.exersire');
+        route::get('update-exersire/{id}', 'ExersireController@getUpdateEx')->name('view.update.ex');
+        route::post('update-exersire', 'ExersireController@updateExer')->name('update.exer');
+
+        Route::post('/upload-image', 'ExersireController@uploadImage')->name('upload.chipboash');
     });
 
     Route::group(['prefix' => 'student'], function () {
