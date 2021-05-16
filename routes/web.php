@@ -43,6 +43,8 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::post('update-exersire', 'ExersireController@updateExer')->name('update.exer');
 
         Route::post('/upload-image', 'ExersireController@uploadImage')->name('upload.chipboash');
+        Route::delete('/delete-exercire/{id}', 'ExersireController@deleteEx')->name('delete.exercire');
+
     });
 
     Route::group(['prefix' => 'student'], function () {

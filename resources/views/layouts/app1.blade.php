@@ -60,17 +60,17 @@
                         <b class="logo-icon">
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             <!-- Dark Logo icon -->
-                            <img src="{{ asset('img/logo_slide.png') }}" alt="homepage" style="height: 50px;" class="dark-logo" />
+                            <img src="{{ asset('img/Artboard1.png') }}" alt="homepage" style="height: 50px;" class="dark-logo" />
                             <!-- Light Logo icon -->
-                            <img src="{{ asset('img/logo_slide.png') }}" alt="homepage" style="height: 50px;" class="light-logo" />
+                            <img src="{{ asset('img/Artboard1.png') }}" alt="homepage" style="height: 50px;" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text -->
                         <span class="logo-text">
                              <!-- dark Logo text -->
-                             <img src="{{ asset('img/logo2.png') }}" alt="homepage" style="height: 70px;" class="dark-logo" />
+                             <img src="{{ asset('img/unnamed.png') }}" alt="homepage" style="height: 70px;" class="dark-logo" />
                              <!-- Light Logo text -->
-                             <img src="{{ asset('img/logo2.png') }}" class="light-logo" style="height: 70px;" alt="homepage" />
+                             <img src="{{ asset('img/unnamed.png') }}" class="light-logo" style="height: 70px;" alt="homepage" />
                         </span>
                     </a>
                     <!-- ============================================================== -->

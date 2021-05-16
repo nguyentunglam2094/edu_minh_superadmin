@@ -54,6 +54,44 @@
     <script src="{{ asset('xtreme/assets/libs/select2/dist/js/select2.min.js') }}"></script>
     <script src="{{ asset('xtreme/dist/js/pages/forms/select2/select2.init.js') }}"></script>
     <script>
+        $('body').on('click', '.btn-delete', function(e){
+            e.preventDefault();
+            var me = $(this),
+            url = me.attr('href'),
+            id =  me.attr('data-id'),
+            csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+            swal.fire({
+                title: 'Xác nhận xóa',
+                text: 'Bạn có muốn xóa câu hỏi?',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý',
+                cancelButtonText: 'Hủy bỏ'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            'id':id,
+                            '_method' : 'DELETE',
+                            '_token' : csrf_token,
+                        },
+                        success: function (data) {
+                            toastr.success('Xóa câu hỏi thành công!');
+                            location.reload();
+                        },
+                        error: function(xhr){
+                            toastr.error('Xóa câu hỏi thất bại!')
+                        }
+                    });
+                }
+            });
+        });
+
         $(document).ready(function () {
             var datatable = $('#datatable').DataTable({
                 responsive : true,

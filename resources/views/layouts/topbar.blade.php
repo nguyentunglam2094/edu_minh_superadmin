@@ -8,7 +8,7 @@
             <!-- Logo -->
             <!-- ============================================================== -->
             <a class="navbar-brand" href="{{ route('view.dashboard') }}">
-                <img src="{{ asset('img/logo_kiosk.png') }}" alt="homepage" class="light-logo img-fluid" width="100%" />
+                <img src="{{ asset('img/Artboard1.png') }}" alt="homepage" class="light-logo img-fluid" width="100%" />
 
             </a>
             <!-- ============================================================== -->

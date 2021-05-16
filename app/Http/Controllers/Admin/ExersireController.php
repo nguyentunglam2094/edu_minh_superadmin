@@ -104,6 +104,13 @@ class ExersireController extends Controller
         }
     }
 
+    public function deleteEx(Request $request, Exersires $exersires)
+    {
+        if($request->ajax()){
+            $exersires->where('id', $request->id)->delete();
+        }
+    }
+
     public function datatable(Request $request, Exersires $exersires)
     {
         if($request->ajax()){
@@ -117,7 +124,7 @@ class ExersireController extends Controller
                 return view('elements.action_teacher', [
                     'model' => $data,
                     'url_edit' => route('view.update.ex', $data->id),
-                    'url_delete'=>''
+                    'url_delete'=>route('delete.exercire', $data->id)
                 ]);
             })->make(true);
         }
