@@ -58,6 +58,7 @@
                             <div class="form-group">
                                 <label for="name">Chọn đáp án đúng<span class="text-danger">*</span></label>
                                 <select class="select2 form-control custom-select" name="answer_select" id="answer_select" style="width: 100%; height:36px;">
+                                    <option value="0" {{ old('answer_select') == 0 ? 'selected' : '' }}>Câu tự luận</option>
                                     <option value="1" {{ old('answer_select') == 1 ? 'selected' : '' }}>Đáp án A</option>
                                     <option value="2" {{ old('answer_select') == 2 ? 'selected' : '' }}>Đáp án B</option>
                                     <option value="3" {{ old('answer_select') == 3 ? 'selected' : '' }}>Đáp án C</option>
