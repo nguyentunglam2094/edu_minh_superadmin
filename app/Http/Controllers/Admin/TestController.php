@@ -27,9 +27,19 @@ class TestController extends Controller
         }
     }
 
+    public function saveImageAnswer(Request $request, TestAnswers $testAnswers)
+    {
+        if($request->ajax()){
+            $testAnswers->where('id', $request->id)->update([
+                'image_answer'=>$request->image_answer
+            ]);
+        }
+    }
+
     public function uploadImgAns(Request $request, TestAnswers $testAnswers)
     {
         if($request->ajax()){
+            \Log::debug($request->all());
             $testAnswers->updateImageAns($request);
         }
     }

@@ -168,24 +168,23 @@
                                     <h4 class="modal-title" id="title_ans"></h4>
                                 </div>
                                 <form id="uploadForm" enctype="multipart/form-data">
-
                                 <div class="modal-body">
-                                        @csrf
-                                        <input type="hidden" name="ans_id" id="ans_id">
+                                    @csrf
+                                    <input type="hidden" name="ans_id" id="ans_id">
+                                    <div class="form-group">
                                         <div class="form-group">
-                                            <div class="form-group">
-                                                <label>Chọn ảnh câu trả lời</label><br>
-                                                <input type="file" name="image" id="image2">
-                                            </div>
-                                            <span class="text-danger" id="error-image" style="display:none;"></span>
-                                            <div class="preview-image mb-2">
-                                                <img id="ImgPreview" src="{{ asset('img/no-image.jpg') }}" class="img-fluid avatar" alt="">
-                                            </div>
+                                            <label for="name">Ảnh câu hỏi <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control" name="image_question" id="image_question" value="{{ old('image_question') }}"  >
                                         </div>
+                                        <span class="text-danger" id="error-image" style="display:none;"></span>
+                                        <div class="preview-image mb-2">
+                                            <img id="ImgPreview" src="{{ asset('img/no-image.jpg') }}" class="img-fluid avatar" alt="">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
-                                    <button type="submit" id="save" class="btn btn-danger waves-effect waves-light">Save changes</button>
+                                    <button type="button" id="save" class="btn btn-danger waves-effect waves-light">Save changes</button>
                                 </div>
                             </form>
 
@@ -206,6 +205,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script src="{{ asset('webstudent/js/index.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
 <script>
     $('.selected').on('click', function(e){
         if($(this).is(':checked')){
@@ -228,43 +229,63 @@
 </script>
 
 <script>
-// $("#save").on('click', function () {
-//       var formData = new FormData();
-//       $.ajax({
-//           url: '{{ route('upload.image.ans') }}',
-//           type: 'POST',
-//           data: formData,
-//           async: false,
-//           cache: false,
-//           contentType: false,
-//           processData: false,
-//           success: function () {
-//               alert('Form Submitted!');
-//           },
-//           error: function(){
-//               alert("error in ajax form submission");
-//           }
-//       });
-//       return false;
-//   });
 
-  $('#uploadForm').on('submit', function(e){
-    e.preventDefault();
+$('#save').on('click', function(e){
+    let id_answer = $('#ans_id').val();
+    let image_answer = $('#image_question').val();
+
     $.ajax({
-          url: '{{ route('upload.image.ans') }}',
-          type: 'POST',
-          data: new FormData(this),
-          dataType:'JSON',
-          cache: false,
-          contentType: false,
-          processData: false,
-          success: function () {
+        type: "GET",
+        url: "{{ route('save.image.test') }}",
+        data: {
+            id_answer: id_answer,
+            image_answer: image_answer
+        },
+        success: function (result) {
+            toastr.success("Thêm mới ảnh lời giải thành công");
+            $("#responsive-modal").modal('toggle');
+        },
+        error: function (result) {
+        }
+    });
+
+})
+
+$('#image_question').on('paste', function(event){
+    var items = (event.clipboardData || event.originalEvent.clipboardData).items;
+    for (var i = 0 ; i < items.length ; i++) {
+        var item = items[i];
+        if (item.type.indexOf("image") != -1) {
+            var file = item.getAsFile();
+            console.log(file);
+            upload_file_with_ajax(file, '#image_question');
+        }
+    }
+});
+
+function upload_file_with_ajax(file, id_input){
+      var formData = new FormData();
+      formData.append('file', file);
+
+      $.ajax({
+            url: '{{ route('upload.chipboash') }}',
+            type: 'POST',
+            async: true,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+          success: function (rel) {
+              $(id_input).val(rel);
           },
           error: function(){
           }
       });
-      return false;
-  });
+    }
+
 </script>
 
 <script>
@@ -315,7 +336,7 @@
 
         $('#ans_id').val(id);
         $('#title_ans').html('Thêm hình ảnh câu hỏi số ' + qn);
-
+        $('#image_question').val('');
         $("#responsive-modal").modal();
     });
 </script>

@@ -62,6 +62,8 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::get('/answer/{id}','TestController@viewTestAnswers')->name('answer.test');
         route::get('/update-answer', 'TestController@updateAnswer')->name('update.answer.test');
         route::post('/upload-answer', 'TestController@uploadImgAns')->name('upload.image.ans');
+
+        route::get('/save-image-answer', 'TestController@saveImageAnswer')->name('save.image.test');
     });
 
     Route::group(['prefix' => 'exersire-type'], function () {
