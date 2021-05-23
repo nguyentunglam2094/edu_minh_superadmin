@@ -79,4 +79,44 @@
             });
         });
     </script>
+
+    <script>
+         $('body').on('click', '.btn-delete', function(e){
+            e.preventDefault();
+            var me = $(this),
+            url = me.attr('href'),
+            id =  me.attr('data-id'),
+            csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+            swal.fire({
+                title: 'Xác nhận xóa',
+                text: 'Bạn có muốn xóa giáo viên?',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Đồng ý',
+                cancelButtonText: 'Hủy bỏ'
+            }).then((result) => {
+                console.log(result);
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        data: {
+                            'id':id,
+                            '_method' : 'DELETE',
+                            '_token' : csrf_token,
+                        },
+                        success: function (data) {
+                            toastr.success('Xóa giáo viên thành công!');
+                            location.reload();
+                        },
+                        error: function(xhr){
+                            toastr.error('Xóa giáo viên thất bại!')
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endpush

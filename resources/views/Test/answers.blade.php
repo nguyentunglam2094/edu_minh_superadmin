@@ -173,7 +173,7 @@
                                     <input type="hidden" name="ans_id" id="ans_id">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="name">Ảnh câu hỏi <span class="text-danger">*</span></label>
+                                            <label for="name">Ảnh đáp án <span class="text-danger">*</span></label>
                                             <input type="text" class="form-control" name="image_question" id="image_question" value="{{ old('image_question') }}"  >
                                         </div>
                                         <span class="text-danger" id="error-image" style="display:none;"></span>

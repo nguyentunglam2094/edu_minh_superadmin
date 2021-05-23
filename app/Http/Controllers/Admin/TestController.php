@@ -8,6 +8,7 @@ use App\Models\Subject;
 use App\Models\TestAnswers;
 use App\Models\Tests;
 use App\Models\UserAnswer;
+use App\Models\UserTest;
 use Exception;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -127,9 +128,16 @@ class TestController extends Controller
                 return view('elements.action_teacher', [
                     'model' => $data,
                     'url_edit' => route('answer.test', $data->id),
-                    'url_delete'=>''
+                    'url_delete'=>route('delete.test')
                 ]);
             })->make(true);
+        }
+    }
+
+    public function deleteTest(Request $request, Tests $test)
+    {
+        if($request->ajax()){
+            $test->deleteTest($request->id);
         }
     }
 }

@@ -32,6 +32,7 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::post('/create-teacher', 'TeacherController@createTeacher')->name('add.teacher');
         route::get('/edit-teacher/{id}', 'TeacherController@getEdit')->name('view.edit.teacher');
         route::post('/edit-teacher', 'TeacherController@updateTeacher')->name('edit.teacher');
+        Route::delete('/delete-teacher', 'TeacherController@deleteTeacher')->name('delete.teacher');
     });
 
     Route::group(['prefix' => 'exersire'], function () {
@@ -62,8 +63,9 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::get('/answer/{id}','TestController@viewTestAnswers')->name('answer.test');
         route::get('/update-answer', 'TestController@updateAnswer')->name('update.answer.test');
         route::post('/upload-answer', 'TestController@uploadImgAns')->name('upload.image.ans');
-
         route::get('/save-image-answer', 'TestController@saveImageAnswer')->name('save.image.test');
+
+        route::delete('/delete-test', 'TestController@deleteTest')->name('delete.test');
     });
 
     Route::group(['prefix' => 'exersire-type'], function () {

@@ -80,4 +80,44 @@
             });
         });
     </script>
+
+<script>
+    $('body').on('click', '.btn-delete', function(e){
+       e.preventDefault();
+       var me = $(this),
+       url = me.attr('href'),
+       id =  me.attr('data-id'),
+       csrf_token = $('meta[name="csrf-token"]').attr('content');
+
+       swal.fire({
+           title: 'Xác nhận xóa',
+           text: 'Bạn có muốn xóa bài thi?',
+           showCancelButton: true,
+           confirmButtonColor: '#3085d6',
+           cancelButtonColor: '#d33',
+           confirmButtonText: 'Đồng ý',
+           cancelButtonText: 'Hủy bỏ'
+       }).then((result) => {
+           console.log(result);
+           if (result.value) {
+               $.ajax({
+                   url: url,
+                   type: 'POST',
+                   data: {
+                       'id':id,
+                       '_method' : 'DELETE',
+                       '_token' : csrf_token,
+                   },
+                   success: function (data) {
+                       toastr.success('Xóa bài thi thành công!');
+                       location.reload();
+                   },
+                   error: function(xhr){
+                       toastr.error('Xóa bài thi thất bại!')
+                   }
+               });
+           }
+       });
+   });
+</script>
 @endpush

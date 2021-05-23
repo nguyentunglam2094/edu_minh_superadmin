@@ -101,4 +101,19 @@ class Tests extends Model
         }
         return $detail;
     }
+
+    public function deleteTest($test_id)
+    {
+        //xóa test answer
+        (new TestAnswers)->where('test_id', $test_id)->delete();
+        //xóa user test
+        $userTest = (new UserTest())->where('test_id', $test_id)->get();
+        //xóa user answer
+        $userAnswer = new UserAnswer();
+        foreach($userTest as $val){
+            $userAnswer->where('user_test_id', $val->id)->delete();
+        }
+        //xóa test
+        return $this->where($this->primaryKey, $test_id)->delete();
+    }
 }

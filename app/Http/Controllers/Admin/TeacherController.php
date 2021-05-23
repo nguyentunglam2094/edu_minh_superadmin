@@ -95,9 +95,16 @@ class TeacherController extends Controller
                 return view('elements.action_teacher', [
                     'model' => $data,
                     'url_edit' => route('view.edit.teacher', $data->id),
-                    'url_delete'=>''
+                    'url_delete'=>route('delete.teacher')
                 ]);
             })->make(true);
+        }
+    }
+
+    public function deleteTeacher(Request $request, Teachers $teachers)
+    {
+        if($request->ajax()){
+            $teachers->where('id', $request->id)->delete();
         }
     }
 }
