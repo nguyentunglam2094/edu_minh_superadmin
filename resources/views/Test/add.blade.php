@@ -88,7 +88,7 @@
                                             <input type="text" class="form-control is-invalid" placeholder="Số lượng câu hỏi" name="question_number" value="{{ old('question_number') }}" >
                                             <div class="invalid-feedback">{{ $errors->first('question_number') }}</div>
                                         @else
-                                            <input type="text" class="form-control" placeholder="question_number" name="Số lượng câu hỏi" value="{{ old('question_number') }}" >
+                                            <input type="text" class="form-control" placeholder="Số lượng câu hỏi" name="question_number" value="{{ old('question_number') }}" >
                                         @endif
                                     </div>
                                 </div>

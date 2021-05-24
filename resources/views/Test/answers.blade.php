@@ -83,7 +83,7 @@
                                         <input type="text" class="form-control is-invalid" placeholder="Số lượng câu hỏi" name="question_number" value="{{ $detail->question_number }}" >
                                         <div class="invalid-feedback">{{ $errors->first('question_number') }}</div>
                                     @else
-                                        <input type="text" class="form-control" placeholder="question_number" name="Số lượng câu hỏi" value="{{ $detail->question_number }}" >
+                                        <input type="text" class="form-control" placeholder="Số lượng câu hỏi" name="question_number" value="{{ $detail->question_number }}" >
                                     @endif
                                 </div>
                             </div>
@@ -132,7 +132,10 @@
                                 <div class="list_question" id="listQuestion">
                                     @foreach ($detail->answers as $answers)
                                         <?php
-                                            $responAns = $answerList[$answers->question_number]->where('answer', '!=', $answers->question_number)->count();
+                                            $responAns = 0;
+                                            if( !empty($answerList[$answers->question_number]) ){
+                                                $responAns = $answerList[$answers->question_number]->where('answer', '!=', $answers->question_number)->count();
+                                            }
                                         ?>
                                         <div class="question_answer">
                                             <div class="title_question">Câu {{ $answers->question_number }}: <a href="#" data-answerid="{{ $answers->id }}" data-questionnumber="{{ $answers->question_number }}" class="model_img img-fluid image_ans">Thêm ảnh lời giải</a></div>

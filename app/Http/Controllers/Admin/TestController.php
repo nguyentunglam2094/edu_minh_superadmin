@@ -11,6 +11,7 @@ use App\Models\UserAnswer;
 use App\Models\UserTest;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class TestController extends Controller
@@ -102,10 +103,14 @@ class TestController extends Controller
             'image'=>'required'
         ]);
         try{
+            DB::beginTransaction();
             $createNew = $tests->createNewTest($request);
+            DB::commit();
             return redirect()->route('answer.test', $createNew->id)
             ->with(['alert-type' => 'success', 'message' => 'Thêm bài thi online hành công']);
+
         }catch(Exception $ex){
+            DB::rollback();
             return back()
             ->with(['alert-type' => 'error', 'message' => 'Thêm bài thi online thất bại']);
         }
