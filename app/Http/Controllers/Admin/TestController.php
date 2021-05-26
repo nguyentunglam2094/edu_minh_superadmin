@@ -32,7 +32,7 @@ class TestController extends Controller
     public function saveImageAnswer(Request $request, TestAnswers $testAnswers)
     {
         if($request->ajax()){
-            $testAnswers->where('id', $request->id)->update([
+            $testAnswers->where('id', $request->id_answer)->update([
                 'image_answer'=>$request->image_answer
             ]);
         }
