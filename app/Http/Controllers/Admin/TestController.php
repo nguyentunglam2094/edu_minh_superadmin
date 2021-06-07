@@ -129,6 +129,12 @@ class TestController extends Controller
             ->addColumn('class', function ($data) {
                 return !empty($data->subject) ? $data->class->title : 'No class';
             })
+            ->addColumn('report', function($data){
+                return view('elements.export', [
+                    'model' => $data,
+                    'url_edit' => route('report.test', $data->id)
+                ]);
+            })
             ->addColumn('action', function ($data) {
                 return view('elements.action_teacher', [
                     'model' => $data,
@@ -144,5 +150,18 @@ class TestController extends Controller
         if($request->ajax()){
             $test->deleteTest($request->id);
         }
+    }
+
+    public function reportTest(Tests $test, UserAnswer $userAnswer, UserTest $userTest, $id)
+    {
+        $detail = $test->getDetailTest($id);
+        $answerList = $userAnswer->getAnswer($id);
+        $listUserTest = $userTest->with('user')->where('test_id', $id)->orderBy('answer_corredt', 'desc')->get();
+
+        return view('Test.export_test')->with([
+            'detail'=>$detail,
+            'answerList'=>$answerList,
+            'listUserTest'=>$listUserTest,
+        ]);
     }
 }

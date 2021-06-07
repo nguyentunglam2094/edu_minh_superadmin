@@ -65,13 +65,7 @@
                             <img src="{{ asset('img/Artboard1.png') }}" alt="homepage" style="height: 50px;" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
-                        <!-- Logo text -->
-                        <span class="logo-text">
-                             <!-- dark Logo text -->
-                             <img src="{{ asset('img/unnamed.png') }}" alt="homepage" style="height: 70px;" class="dark-logo" />
-                             <!-- Light Logo text -->
-                             <img src="{{ asset('img/unnamed.png') }}" class="light-logo" style="height: 70px;" alt="homepage" />
-                        </span>
+
                     </a>
                     <!-- ============================================================== -->
                     <!-- End Logo -->

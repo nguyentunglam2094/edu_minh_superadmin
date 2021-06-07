@@ -36,6 +36,7 @@
                                     <th>Tiêu đề</th>
                                     <th>Số câu hỏi</th>
                                     <th>Thời gian làm bài</th>
+                                    <th width="10%">Thống kê</th>
                                     <th width="14%">Actions</th>
                                 </tr>
                             </thead>
@@ -75,6 +76,7 @@
                     { data: 'title', name: 'title'},
                     { data: 'question_number', name: 'question_number'},
                     { data: 'min', name: 'min', width: '14%',className: 'text-center align-middle' },
+                    { data: 'report', name: 'report', width: '10%',className: 'text-center align-middle' },
                     { data: 'action', name: 'action',width: '15%',className: 'text-center align-middle',orderable: false,searchable: false},
                 ]
             });

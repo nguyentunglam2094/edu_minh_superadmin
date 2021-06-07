@@ -19,9 +19,9 @@ class UserAnswer extends Model
      */
     public function getAnswer($test_id)
     {
-        return $this->with('userTest')
+        return $this->with('userTest.user')
         ->whereHas('userTest', function($q) use($test_id){
             $q->where('test_id', $test_id);
-        })->get()->groupBy('question_number');
+        })->get();
     }
 }

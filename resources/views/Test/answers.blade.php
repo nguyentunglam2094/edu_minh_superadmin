@@ -131,20 +131,8 @@
                             <div class="card-body">
                                 <div class="list_question" id="listQuestion">
                                     @foreach ($detail->answers as $answers)
-                                        <?php
-                                            $responAns = 0;
-                                            $title = '';
-                                            if( !empty($answerList[$answers->question_number]) ){
-                                                $responErr = $answerList[$answers->question_number]->where('answer', '!=', $answers->question_number);
-                                                foreach ($responErr as $key => $value) {
-                                                   $title .= $value->userTest->user->name. ' ';
-                                                    $responAns++;
-                                                }
-                                            }
-                                        ?>
                                         <div class="question_answer">
                                             <div class="title_question">Câu {{ $answers->question_number }}: <a href="#" data-answerid="{{ $answers->id }}" data-questionnumber="{{ $answers->question_number }}" class="model_img img-fluid image_ans">Thêm ảnh lời giải</a></div>
-                                            <div class="title_question" title="{{ $title }}">Số lượng học sinh trả lời sai: {{ $responAns }}</div>
                                             <label class="content_answer_text">
                                                 <input type="radio" class="selected" data-answerid="{{ $answers->id }}" data-answer="1" name="answer{{ $answers->question_number }}" {{ $answers->selected_question == 1 ? 'checked' : '' }}>
                                                 <span class="checkmark">A</span>

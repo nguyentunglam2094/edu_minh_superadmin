@@ -14,4 +14,9 @@ class UserTest extends Model
     {
         return $this->hasOne(Users::class, 'id', 'user_id');
     }
+
+    // public function userAnswer()
+    // {
+    //     return $this->hasMany()
+    // }
 }

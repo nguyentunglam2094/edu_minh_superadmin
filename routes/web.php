@@ -66,6 +66,8 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::get('/save-image-answer', 'TestController@saveImageAnswer')->name('save.image.test');
 
         route::delete('/delete-test', 'TestController@deleteTest')->name('delete.test');
+
+        route::get('report-test/{id}', 'TestController@reportTest')->name('report.test');
     });
 
     Route::group(['prefix' => 'exersire-type'], function () {
