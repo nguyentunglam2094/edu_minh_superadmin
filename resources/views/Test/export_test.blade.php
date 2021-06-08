@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="col-4">
-                            <h4 class="card-title">Điểm số học sinh</h4>
+                            <h4 class="card-title">Điểm số học sinh (Tổng số HS: {{ $listUserTest->count() }})</h4>
                             <table data-toggle="table" data-mobile-responsive="true" class="table-striped">
                                 <thead>
                                     <tr>
