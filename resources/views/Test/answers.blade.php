@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-body">
                 <h3 class="card-title text-center font-weight-bold">Chỉnh sửa đề thi</h3>
-                <form class="mt-4" method="POST" action="{{ route('add.test') }}" enctype="multipart/form-data">
+                <form class="mt-4" method="POST" action="{{ route('update.test') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="test_id" value="{{ $detail->id }}">
                 <div class="row">

@@ -86,19 +86,19 @@ class Tests extends Model
         }
         $detail->update($data);
 
-        if($request->hasFile('image') || $numberOrigin != $request->question_number){
-            $test_id = $request->test_id;
-            TestAnswers::where('test_id', $test_id)->delete();
-            $dataAns = [];
-            for($i = 1; $i <= $request->question_number; $i++){
-                $dataAns[] = [
-                    'test_id'=> $test_id,
-                    'question_number'=> $i,
-                    'selected_question'=> TestAnswers::SELECTED_A
-                ];
-            }
-            TestAnswers::insert($dataAns);
-        }
+        // if($request->hasFile('image') || $numberOrigin != $request->question_number){
+        //     $test_id = $request->test_id;
+        //     TestAnswers::where('test_id', $test_id)->delete();
+        //     $dataAns = [];
+        //     for($i = 1; $i <= $request->question_number; $i++){
+        //         $dataAns[] = [
+        //             'test_id'=> $test_id,
+        //             'question_number'=> $i,
+        //             'selected_question'=> TestAnswers::SELECTED_A
+        //         ];
+        //     }
+        //     TestAnswers::insert($dataAns);
+        // }
         return $detail;
     }
 

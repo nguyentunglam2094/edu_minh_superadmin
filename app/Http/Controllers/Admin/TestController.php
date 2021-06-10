@@ -80,7 +80,7 @@ class TestController extends Controller
             'class_id'=>'required|exists:classes,id',
             'question_number'=>'required|numeric|gte:0',
             'min'=>'required|numeric|gte:0',
-            'image'=>'required'
+            'image'=>'nullable|sometimes'
         ]);
         try{
             $createNew = $tests->updateTest($request);

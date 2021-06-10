@@ -61,6 +61,7 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::get('/add-test', 'TestController@addTestOnline')->name('view.add.test');
         route::post('/add-test', 'TestController@createTest')->name('add.test');
         route::get('/answer/{id}','TestController@viewTestAnswers')->name('answer.test');
+        route::post('/update-test', 'TestController@updateTest')->name('update.test');
         route::get('/update-answer', 'TestController@updateAnswer')->name('update.answer.test');
         route::post('/upload-answer', 'TestController@uploadImgAns')->name('upload.image.ans');
         route::get('/save-image-answer', 'TestController@saveImageAnswer')->name('save.image.test');
