@@ -15,6 +15,34 @@ use GuzzleHttp\Client;
 class Ultilities
 {
 
+    public static function pushNotifyToUsers($userSenderId, $users, $title, $message, $type, $source, $sourceTo, $screen, $params, $data = null)
+    {
+        $dataOrigin = [
+            'screen' => $screen,
+            'force' => false,
+            'type' => '',
+            'params' => $params,
+            'status' => 0,
+        ];
+        if(!empty($data)){
+            $dataOrigin = $data;
+        }
+        $options = [
+            'sender_id' => $userSenderId, //Expected: id of sender push
+            'user_id' =>   $users, //push recipient id
+            'data' => $dataOrigin,
+            'title' => $title,
+            'message' => $message,
+            'reference_id' => $params,
+            'type' => $type,
+            'source' => $source,
+            'source_to' => $sourceTo,
+            'screen' => $screen,
+        ];
+        dispatch(new SavePushNotification($options));
+    }
+
+
     /**
      * get event by day
      * @author lamnt

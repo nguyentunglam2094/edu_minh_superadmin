@@ -25,6 +25,9 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
     route::post('/update-banners', 'BannerController@store')->name('save.banners');
     route::delete('/delete-banner', 'BannerController@destroyBanner')->name('delete.banner');
 
+    route::post('/update-token-device', 'AuthController@updateDevice')->name('update.token.device');
+
+
     Route::group(['prefix' => 'teacher'], function () {
         route::get('/teachers', 'TeacherController@index')->name('manage.teacher');
         route::get('/datatable-teacher', 'TeacherController@datatable')->name('datatable.teacher');

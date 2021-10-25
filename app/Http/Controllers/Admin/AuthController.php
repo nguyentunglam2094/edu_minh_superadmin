@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Banners;
 use App\Models\Teachers;
+use App\Models\UserDevices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,6 +18,26 @@ class AuthController extends Controller
     {
         \Auth::guard()->logout();
         return redirect()->route('login');
+    }
+
+
+            /**
+     * update device token client web
+     * @author lamnt
+     * @date 2020 07 17
+     */
+    public function updateDevice(Request $request, UserDevices $userDevices)
+    {
+        if (!\Auth::check()) {
+            return false;
+        }
+        try {
+            $userDevices->saveTokenDevice($request, UserDevices::SOURCE_ADMIN);
+        } catch (\Exception $ex) {
+            return response()->json([
+                'message' => __('api.save_token_failure'),
+            ], 500);
+        }
     }
 
     public function getLogin(){
