@@ -144,7 +144,15 @@
                                 <div class="list_question" id="listQuestion">
                                     @foreach ($detail->answers as $answers)
                                         <div class="question_answer">
-                                            <div class="title_question">Câu {{ $answers->question_number }}: <a href="#" data-answerid="{{ $answers->id }}" data-questionnumber="{{ $answers->question_number }}" class="model_img img-fluid image_ans">Thêm ảnh lời giải</a></div>
+                                            <div class="title_question">Câu {{ $answers->question_number }}:
+                                                <a href="#"
+                                                    data-answerid="{{ $answers->id }}"
+                                                    data-imageans="{{ $answers->image_answer }}"
+                                                    data-questionnumber="{{ $answers->question_number }}"
+                                                    class="model_img img-fluid image_ans">Thêm ảnh lời giải
+                                                </a>
+                                            </div>
+
                                             <label class="content_answer_text">
                                                 <input type="radio" class="selected" data-answerid="{{ $answers->id }}" data-answer="1" name="answer{{ $answers->question_number }}" {{ $answers->selected_question == 1 ? 'checked' : '' }}>
                                                 <span class="checkmark">A</span>
@@ -287,7 +295,8 @@ function upload_file_with_ajax(file, id_input){
             contentType: false,
             processData: false,
           success: function (rel) {
-              $(id_input).val(rel);
+                let val = $(id_input).val() + '|' + rel;
+                $(id_input).val(val);
           },
           error: function(){
           }
@@ -341,10 +350,11 @@ function upload_file_with_ajax(file, id_input){
     $('.image_ans').on('click', function(e){
         let qn = $(this).data('questionnumber');
         let id = $(this).data('answerid');
+        let imageaws = $(this).data('imageans');
 
         $('#ans_id').val(id);
         $('#title_ans').html('Thêm hình ảnh câu hỏi số ' + qn);
-        $('#image_question').val('');
+        $('#image_question').val(imageaws);
         $("#responsive-modal").modal();
     });
 </script>
