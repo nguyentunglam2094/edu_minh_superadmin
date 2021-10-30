@@ -33,6 +33,12 @@ class Exersires extends Model
         return $this->hasOne(Classes::class, 'id', 'class_id');
     }
 
+    // public function getImageAnswerAttribute($key)
+    // {
+    //     \Log::debug(explode('|', $key));
+    //     return explode('|', $key);
+    // }
+
     public function getDetailById($id)
     {
         return $this->with(['subject', 'class'])->where($this->primaryKey, $id)->first();

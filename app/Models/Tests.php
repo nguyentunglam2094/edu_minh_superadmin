@@ -9,7 +9,7 @@ class Tests extends Model
 {
     //
     protected $table = 'tests';
-    protected $fillable = ['title', 'code', 'subject_id', 'class_id', 'file_pdf', 'question_number', 'min'];
+    protected $fillable = ['title', 'code', 'subject_id', 'class_id', 'file_pdf', 'question_number', 'min', 'test_type_id'];
 
     public function subject()
     {
@@ -44,7 +44,9 @@ class Tests extends Model
             'class_id'=>Ultilities::clearXSS($request->class_id),
             'question_number'=>Ultilities::clearXSS($request->question_number),
             'min'=>Ultilities::clearXSS($request->min),
+            'test_type_id'=>$request->type_test
         ];
+
         if($request->hasFile('image')){
             $files = $request->file('image');
             $plus = [
@@ -76,6 +78,7 @@ class Tests extends Model
             'class_id'=>Ultilities::clearXSS($request->class_id),
             'question_number'=>Ultilities::clearXSS($request->question_number),
             'min'=>Ultilities::clearXSS($request->min),
+            'test_type_id'=>$request->type_test
         ];
         if($request->hasFile('image')){
             $files = $request->file('image');

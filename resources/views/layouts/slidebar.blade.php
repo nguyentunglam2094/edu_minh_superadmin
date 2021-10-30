@@ -27,6 +27,12 @@
                 </li>
 
                 <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.test.type') }}" aria-expanded="false">
+                        <i class="m-r-10 mdi mdi-account-circle"></i><span class="hide-menu">Phân loại đề thi</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.test') }}" aria-expanded="false">
                         <i class="m-r-10 mdi mdi-account-circle"></i><span class="hide-menu">Đề thi online</span>
                     </a>

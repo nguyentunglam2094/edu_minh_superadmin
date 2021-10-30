@@ -7,6 +7,7 @@ use App\Models\Classes;
 use App\Models\Subject;
 use App\Models\TestAnswers;
 use App\Models\Tests;
+use App\Models\TestType;
 use App\Models\UserAnswer;
 use App\Models\UserTest;
 use Exception;
@@ -46,10 +47,11 @@ class TestController extends Controller
         }
     }
 
-    public function addTestOnline(Subject $subject, Classes $classes)
+    public function addTestOnline(Subject $subject, Classes $classes, TestType $testType)
     {
         $listClass = $classes->getClass();
         $listSubject = $subject->getSubject();
+
         return view('Test.add')->with([
             'listSubject'=>$listSubject,
             'listClass'=>$listClass,
@@ -80,7 +82,8 @@ class TestController extends Controller
             'class_id'=>'required|exists:classes,id',
             'question_number'=>'required|numeric|gte:0',
             'min'=>'required|numeric|gte:0',
-            'image'=>'nullable|sometimes'
+            'image'=>'nullable|sometimes',
+            'type_test'=>'required|numeric|exists:test_type,id'
         ]);
         try{
             $createNew = $tests->updateTest($request);
@@ -96,11 +99,12 @@ class TestController extends Controller
     {
         $request->validate([
             'title'=>'required|max:255|string',
-            'subject_id'=>'required|exists:subjects,id',
-            'class_id'=>'required|exists:classes,id',
+            'subject_id'=>'required|numeric|exists:subjects,id',
+            'class_id'=>'required|numeric|exists:classes,id',
             'question_number'=>'required|numeric|gte:0',
             'min'=>'required|numeric|gte:0',
-            'image'=>'required'
+            'image'=>'required',
+            'type_test'=>'required|numeric|exists:test_type,id'
         ]);
         try{
             DB::beginTransaction();
@@ -127,7 +131,7 @@ class TestController extends Controller
                 return !empty($data->subject) ? $data->subject->title : 'No subject';
             })
             ->addColumn('class', function ($data) {
-                return !empty($data->subject) ? $data->class->title : 'No class';
+                return !empty($data->class) ? $data->class->title : 'No class';
             })
             ->addColumn('report', function($data){
                 return view('elements.export', [

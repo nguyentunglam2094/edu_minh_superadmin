@@ -48,7 +48,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="name">Môn học <span class="text-danger">*</span></label>
                                     <select class="select2 form-control custom-select" name="subject_id" id="subject_id" style="width: 100%; height:36px;">
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="name">Lớp <span class="text-danger">*</span></label>
                                     <select class="select2 form-control custom-select" name="class_id" style="width: 100%; height:36px;">
@@ -72,6 +72,18 @@
                                     </select>
                                     @if($errors->has('class_id'))
                                         <div class="invalid-feedback">{{ $errors->first('class_id') }}</div>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="name">Loại đề thi <span class="text-danger">*</span></label>
+                                    <select class="select2 form-control custom-select" id="type_test" name="type_test" style="width: 100%; height:36px;">
+
+                                    </select>
+                                    @if($errors->has('type_test'))
+                                        <div class="invalid-feedback">{{ $errors->first('type_test') }}</div>
                                     @endif
                                 </div>
                             </div>
@@ -334,6 +346,58 @@ function upload_file_with_ajax(file, id_input){
         $('#title_ans').html('Thêm hình ảnh câu hỏi số ' + qn);
         $('#image_question').val('');
         $("#responsive-modal").modal();
+    });
+</script>
+
+<script>
+    $('#class_id').on('change', function(e){
+        let value = $(this).val();
+        $.ajax({
+            url: "{{ route('get.test.type') }}",
+            type: 'get',
+            data: {
+                'id':value
+            },
+            success: function (data) {
+                $.each(data, function( index, value ) {
+                    console.log( value );
+                    let check = '';
+                    if(value.id == test_type_id){
+                        check = 'selected';
+                    }
+                    $('#type_test').append("<option value='"+value.id+"' "+check+">"+value.title+"</option>")
+                });
+            },
+            error: function(xhr){
+            }
+        });
+    })
+</script>
+
+<script>
+    var test_type_id = {{ $detail->test_type_id }};
+    $(document).ready(function(){
+        let value = $('#type_test').val();
+        $.ajax({
+            url: "{{ route('get.test.type') }}",
+            type: 'get',
+            data: {
+                'id':value
+            },
+            success: function (data) {
+                $.each(data, function( index, value ) {
+                    console.log( value );
+                    //check selected
+                    let check = '';
+                    if(value.id == test_type_id){
+                        check = 'selected';
+                    }
+                    $('#type_test').append("<option value='"+value.id+"' "+check+">"+value.title+"</option>")
+                });
+            },
+            error: function(xhr){
+            }
+        });
     });
 </script>
 @endpush

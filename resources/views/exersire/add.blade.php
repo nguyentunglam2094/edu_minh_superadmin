@@ -189,7 +189,8 @@
             contentType: false,
             processData: false,
           success: function (rel) {
-              $(id_input).val(rel);
+              let val = $(id_input).val() + '|' + rel;
+              $(id_input).val(val);
           },
           error: function(){
           }

@@ -134,7 +134,11 @@
 								<label>Ảnh câu trả lời</label><br>
                             </div>
 							<div class="preview-image mb-2">
-								<img src="{{ asset($detailEx->image_answer) }}" class="img-fluid avatar" alt="">
+                                @foreach (explode('|',$detailEx->image_answer) as $key=>$item)
+                                @if (!empty($item))
+								<img src="{{ asset($item) }}" class="img-fluid avatar" alt="">
+                                @endif
+                                @endforeach
 							</div>
                         </div>
 
@@ -204,7 +208,8 @@
             contentType: false,
             processData: false,
           success: function (rel) {
-              $(id_input).val(rel);
+            let val = $(id_input).val() + '|' + rel;
+              $(id_input).val(val);
           },
           error: function(){
           }

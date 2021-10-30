@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="name">Môn học <span class="text-danger">*</span></label>
                                         <select class="select2 form-control custom-select" name="subject_id" id="subject_id" style="width: 100%; height:36px;">
@@ -67,16 +67,27 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-6">
+                                <div class="col-lg-4">
                                     <div class="form-group">
                                         <label for="name">Lớp <span class="text-danger">*</span></label>
-                                        <select class="select2 form-control custom-select" name="class_id" style="width: 100%; height:36px;">
+                                        <select class="select2 form-control custom-select" name="class_id" id="class_id" style="width: 100%; height:36px;">
                                             @foreach ($listClass as $class)
                                                 <option value="{{ $class->id }}" {{ old('class_id') == $class->id ? 'selected' : '' }}>{{ $class->title }}</option>
                                             @endforeach
                                         </select>
                                         @if($errors->has('class_id'))
                                             <div class="invalid-feedback">{{ $errors->first('class_id') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="form-group">
+                                        <label for="name">Loại đề thi <span class="text-danger">*</span></label>
+                                        <select class="select2 form-control custom-select" id="type_test" name="type_test" style="width: 100%; height:36px;">
+
+                                        </select>
+                                        @if($errors->has('type_test'))
+                                            <div class="invalid-feedback">{{ $errors->first('type_test') }}</div>
                                         @endif
                                     </div>
                                 </div>
@@ -197,6 +208,47 @@
 		});
         ajaxSelectArticle();
 	});
+</script>
+<script>
+    $('#class_id').on('change', function(e){
+        let value = $(this).val();
+        $.ajax({
+            url: "{{ route('get.test.type') }}",
+            type: 'get',
+            data: {
+                'id':value
+            },
+            success: function (data) {
+                $.each(data, function( index, value ) {
+                    console.log( value );
+                    $('#type_test').append("<option value='"+value.id+"' {{ old('type_test') == "+value.id+" ? 'selected' : '' }}>"+value.title+"</option>")
+                });
+            },
+            error: function(xhr){
+            }
+        });
+    })
+</script>
+
+<script>
+    $(document).ready(function(){
+        let value = $('#type_test').val();
+        $.ajax({
+            url: "{{ route('get.test.type') }}",
+            type: 'get',
+            data: {
+                'id':value
+            },
+            success: function (data) {
+                $.each(data, function( index, value ) {
+                    console.log( value );
+                    $('#type_test').append("<option value='"+value.id+"' {{ old('type_test') == "+value.id+" ? 'selected' : '' }}>"+value.title+"</option>")
+                });
+            },
+            error: function(xhr){
+            }
+        });
+    });
 </script>
 
 @endpush

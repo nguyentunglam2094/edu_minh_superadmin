@@ -74,6 +74,15 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::get('report-test/{id}', 'TestController@reportTest')->name('report.test');
     });
 
+    Route::group(['prefix' => 'type-class'], function () {
+        route::get('/', 'TestTypeController@index')->name('index.test.type');
+        route::get('/add', 'TestTypeController@add')->name('view.add.test.type');
+        route::post('/store', 'TestTypeController@store')->name('store.test.type');
+        route::get('edit/{id}', 'TestTypeController@edit')->name('view.edit.test.type');
+        route::post('/update', 'TestTypeController@update')->name('update.test.type');
+        route::get('/select-test-type', 'TestTypeController@getTestType')->name('get.test.type');
+    });
+
     Route::group(['prefix' => 'exersire-type'], function () {
         route::get('/exersire-type', 'ExerciseTypeController@index')->name('index.exersire.type');
         route::get('/datatable-type-exersire', 'ExerciseTypeController@datatable')->name('datatable.exersire.type');
