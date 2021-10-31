@@ -21,8 +21,6 @@ class PushNotifications extends Model
     const SOURCE_STUDENT = 2;
 
 
-    protected $appends = ['date',];
-
     protected $table = 'push_notifications';
     protected $guarded = [];
 
@@ -36,6 +34,10 @@ class PushNotifications extends Model
         return $this->where($this->primaryKey, $id)->update($update);
     }
 
+    public function sender()
+    {
+        return $this->hasOne(Users::class, 'id', 'sender_id');
+    }
 
     /**
      * detail push by push id

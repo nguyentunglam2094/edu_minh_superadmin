@@ -34,6 +34,7 @@
                                     <th>Ảnh bài tập</th>
                                     <th>Ảnh câu trả lời</th>
                                     <th>Đáp án</th>
+                                    <th>Xem bình luận</th>
                                     <th width="14%">Actions</th>
                                 </tr>
                             </thead>
@@ -117,6 +118,7 @@
                             return '<img src="' + url +'" class="img-thumbnail" alt="'+ row['image'] +'" width="100px" height="auto"/>';
                     }},
                     { data: 'selected_question', name: 'selected_question'},
+                    { data: 'comment', name: 'comment',width: '15%',className: 'text-center align-middle',orderable: false,searchable: false},
                     { data: 'action', name: 'action',width: '15%',className: 'text-center align-middle',orderable: false,searchable: false},
                 ]
             });

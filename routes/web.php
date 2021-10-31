@@ -49,6 +49,9 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         Route::post('/upload-image', 'ExersireController@uploadImage')->name('upload.chipboash');
         Route::delete('/delete-exercire/{id}', 'ExersireController@deleteEx')->name('delete.exercire');
 
+        route::get('{id}/comments', 'ExersireController@viewCommnets')->name('view.comment.exersire');
+        route::get('comment-exer', 'ExersireController@comment')->name('comment.exersire');
+
     });
 
     Route::group(['prefix' => 'student'], function () {
@@ -99,6 +102,10 @@ Route::group(['namespace' => 'Admin','middleware' => 'auth'], function () {
         route::post('/create-themes', 'ThemesController@createThemes')->name('add.themes');
         route::get('/edit-themes/{id}', 'ThemesController@viewEdit')->name('view.edit.themes');
         route::post('/edit-themes', 'ThemesController@updateThemes')->name('edit.themes');
+    });
+
+    Route::group(['prefix' => 'thong-bao'], function () {
+        route::get('/', 'NotificationController@index')->name('index.notification');
     });
 
 });

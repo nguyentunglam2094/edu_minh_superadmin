@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Libraries\Ultilities;
 use App\Models\Classes;
+use App\Models\Comments;
 use App\Models\ExerciseType;
 use App\Models\Exersires;
 use App\Models\Subject;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\DataTables;
 
 class ExersireController extends Controller
@@ -120,13 +122,44 @@ class ExersireController extends Controller
             ->addColumn('type_exercire', function ($data) {
                 return !empty($data->typeExercire) ? $data->typeExercire->title : 'No subject';
             })
+            ->addColumn('comment', function ($data){
+                return '<a href="'.route('view.comment.exersire', $data->id).'" class="btn btn-info waves-effect waves-light btn-sm"  title="Xem bình luận"><i class="m-r-10 mdi mdi-comment-multiple-outline"></i></a>';
+            })
             ->addColumn('action', function ($data) {
                 return view('elements.action_teacher', [
                     'model' => $data,
                     'url_edit' => route('view.update.ex', $data->id),
                     'url_delete'=>route('delete.exercire', $data->id)
                 ]);
-            })->make(true);
+            })->rawColumns(['comment'])->make(true);
+        }
+    }
+
+    public function viewCommnets(Comments $comments,Exersires $exersires, $id)
+    {
+        $detailEx = $exersires->getDetailById($id);
+        if(empty($detailEx)){
+            return back()
+            ->with(['alert-type' => 'error', 'message' => 'Không tìm thấy bài tập']);
+        }
+        $listComment = $comments->getCommentByExer($id);
+        return view('comment.index')->with([
+            'listComment'=>$listComment,
+            'detailEx'=>$detailEx,
+        ]);
+    }
+
+    public function comment(Request $request, Comments $comments)
+    {
+        try{
+            DB::beginTransaction();
+            $data = $comments->saveComment($request);
+            DB::commit();
+            return view('comment.newcomment')->with([
+                'comment'=>$data
+            ]);
+        }catch(Exception $e){
+            DB::rollBack();
         }
     }
 }

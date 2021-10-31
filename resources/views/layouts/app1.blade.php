@@ -252,7 +252,7 @@
                         // var url = '{{ url('/detailTransaction/') }}/' + payload.data.id;
                         // window.location.href = url;
                         // update ajax push
-                        console.log('abcddddddd');
+                        console.log('abcddddddd------');
                     }
                 });
                 //admin.detail.transaction
