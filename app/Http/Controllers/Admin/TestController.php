@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Classes;
+use App\Models\Comments;
+use App\Models\PushNotifications;
 use App\Models\Subject;
 use App\Models\TestAnswers;
 use App\Models\Tests;
@@ -58,18 +60,24 @@ class TestController extends Controller
         ]);
     }
 
-    public function viewTestAnswers(Tests $test, Subject $subject, Classes $classes, TestAnswers $testAnswers, UserAnswer $userAnswer, $id)
+    public function viewTestAnswers(Comments $comments, Tests $test, Subject $subject, Classes $classes, TestAnswers $testAnswers, UserAnswer $userAnswer, $id)
     {
         $detail = $test->getDetailTest($id);
         $listClass = $classes->getClass();
         $listSubject = $subject->getSubject();
         $answerList = $userAnswer->getAnswer($id);
 
+        PushNotifications::where('screen', 'detailtest')->where('reference_id', $detail->id)
+        ->update([
+            'read'=>1
+        ]);
+        $listComment = $comments->getCommentByExer($id, 'object_id');
         return view('Test.answers')->with([
             'detail'=>$detail,
             'listSubject'=>$listSubject,
             'listClass'=>$listClass,
             'answerList'=>$answerList,
+            'listComment'=>$listComment,
         ]);
     }
 
@@ -168,4 +176,5 @@ class TestController extends Controller
             'listUserTest'=>$listUserTest,
         ]);
     }
+
 }

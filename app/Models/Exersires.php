@@ -23,6 +23,11 @@ class Exersires extends Model
         return $this->with('typeExercire')->orderBy('id','desc')->get();
     }
 
+    public function getExersiresLast()
+    {
+        return $this->with('typeExercire')->orderBy('id','desc')->latest();
+    }
+
     public function subject()
     {
         return $this->hasOne(Subject::class, 'id', 'subject_id');

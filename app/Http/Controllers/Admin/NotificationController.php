@@ -16,6 +16,13 @@ class NotificationController extends Controller
             $data = $pushNotifications->with('sender')->where('source_to', PushNotifications::SOURCE_ADMIN)->latest();
             return Datatables::of($data)
             ->addIndexColumn()
+            ->editColumn('title', function($data){
+                $route = route('view.comment.exersire', $data->reference_id);
+                if($data->screen == 'detailtest'){
+                    $route = route('answer.test', $data->reference_id);
+                }
+                return '<a href="'.$route.'">'.$data->title.'</a>';
+            })
             ->editColumn('screen', function($data){
                 if($data->screen == 'detailtest'){
                     return 'Bình luận đề thi';
@@ -23,12 +30,12 @@ class NotificationController extends Controller
                 return 'Bình luận bài tập';
             })
             ->editColumn('read', function($data){
-                return $data->read == 0 ? '<span class="label label-danger">New</span>' : '';
+                return $data->read == 0 ? '<span class="label label-danger">Chưa đọc</span>' : '';
             })
             ->addColumn('sender_name', function($data){
                 return !empty($data->sender) ? $data->sender->name : '';
             })
-            ->rawColumns(['read'])
+            ->rawColumns(['read', 'title'])
             ->make(true);
         }
         return view('notificaiton.index');

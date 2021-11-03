@@ -28,12 +28,13 @@ class Comments extends Model
      * lấy danh sách comment theo id bài viết
      * @author lamtn
      */
-    public function getCommentByExer($exer_id)
+    public function getCommentByExer($exer_id, $col = 'exercise_id')
     {
         return $this->with(['parentComment.user', 'user','parentComment.teacher', 'teacher'])
-        ->where('parent_id', 0)->where('exercise_id', $exer_id)
+        ->where('parent_id', 0)->where($col, $exer_id)
         ->orderBy('id','desc')->get();
     }
+
 
     public function countComment($exer_id)
     {
@@ -46,13 +47,13 @@ class Comments extends Model
         ->where('parent_id', 0)->where('object_id', $exer_id)
         ->orderBy('id','desc')->get();
     }
-    public function saveComment($request, $type = 0)
+    public function saveComment($request)
     {
         $parent_id = 0;
         if(!empty($request->parent_id)){
             $parent_id = $request->parent_id;
         }
-        if($type == 0){
+        if(empty($request->type)){
             $data = [
                 'user_id'=>0,
                 'teacher_id'=>$request->user()->id,

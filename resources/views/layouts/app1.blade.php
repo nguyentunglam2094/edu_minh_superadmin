@@ -22,6 +22,16 @@
     <link href="{{ asset('xtreme/dist/css/style.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
     @yield('css')
+    <style>
+        .notification .badge {
+        position: absolute;
+        right: 15px;
+        padding: 5px 5px;
+        border-radius: 50%;
+        background: red;
+        color: white;
+        }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -221,43 +231,43 @@
 
 
     <script>
-        const messaging = firebase.messaging();
-        messaging
-            .requestPermission()
-            .then(function () {
-                console.log("Notification permission granted.");
-                // console.log(messaging.getToken());
-                return messaging.getToken()
-            })
-            .then(function(token) {
-                console.log(token);
-                $.ajax({
-                    type:'POST',
-                    url: '{{ route('update.token.device') }}',
-                    data:{token : token, _token: "<?php echo csrf_token(); ?>"},
-                    success:function(data){
-                    //    console.log(data);
-                    }
-                });
-            })
-            .catch(function (err) {
-                console.log("Unable to get permission to notify.", err);
-            });
+        // const messaging = firebase.messaging();
+        // messaging
+        //     .requestPermission()
+        //     .then(function () {
+        //         console.log("Notification permission granted.");
+        //         // console.log(messaging.getToken());
+        //         return messaging.getToken()
+        //     })
+        //     .then(function(token) {
+        //         console.log(token);
+        //         $.ajax({
+        //             type:'POST',
+        //             url: '{{ route('update.token.device') }}',
+        //             data:{token : token, _token: "<?php echo csrf_token(); ?>"},
+        //             success:function(data){
+        //             //    console.log(data);
+        //             }
+        //         });
+        //     })
+        //     .catch(function (err) {
+        //         console.log("Unable to get permission to notify.", err);
+        //     });
 
-            messaging.onMessage(function(payload, data) {
-                //kiểm tra số tin nhắn chưa đ
-                console.log("Message received. ", payload);
-                toastr.success(payload.notification.body,payload.notification.title, {
-                    onclick: function(){
-                        // var url = '{{ url('/detailTransaction/') }}/' + payload.data.id;
-                        // window.location.href = url;
-                        // update ajax push
-                        console.log('abcddddddd------');
-                    }
-                });
-                //admin.detail.transaction
-                // NotisElem.innerHTML = NotisElem.innerHTML + JSON.stringify(payload)
-            });
+            // messaging.onMessage(function(payload, data) {
+            //     //kiểm tra số tin nhắn chưa đ
+            //     console.log("Message received. ", payload);
+            //     toastr.success(payload.notification.body,payload.notification.title, {
+            //         onclick: function(){
+            //             // var url = '{{ url('/detailTransaction/') }}/' + payload.data.id;
+            //             // window.location.href = url;
+            //             // update ajax push
+            //             console.log('abcddddddd------');
+            //         }
+            //     });
+            //     //admin.detail.transaction
+            //     // NotisElem.innerHTML = NotisElem.innerHTML + JSON.stringify(payload)
+            // });
     </script>
 
     <script>

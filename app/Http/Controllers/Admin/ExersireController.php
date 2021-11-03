@@ -8,6 +8,7 @@ use App\Models\Classes;
 use App\Models\Comments;
 use App\Models\ExerciseType;
 use App\Models\Exersires;
+use App\Models\PushNotifications;
 use App\Models\Subject;
 use Exception;
 use Illuminate\Http\Request;
@@ -142,7 +143,13 @@ class ExersireController extends Controller
             return back()
             ->with(['alert-type' => 'error', 'message' => 'Không tìm thấy bài tập']);
         }
-        $listComment = $comments->getCommentByExer($id);
+        //update read notification
+        PushNotifications::where('screen', 'detailexersire')->where('reference_id', $detailEx->id)
+        ->update([
+            'read'=>1
+        ]);
+
+        $listComment = $comments->getCommentByExer($id, 'object_id');
         return view('comment.index')->with([
             'listComment'=>$listComment,
             'detailEx'=>$detailEx,
