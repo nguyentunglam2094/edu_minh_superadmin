@@ -149,7 +149,7 @@ class ExersireController extends Controller
             'read'=>1
         ]);
 
-        $listComment = $comments->getCommentByExer($id, 'object_id');
+        $listComment = $comments->getCommentByExer($id);
         return view('comment.index')->with([
             'listComment'=>$listComment,
             'detailEx'=>$detailEx,
@@ -161,6 +161,7 @@ class ExersireController extends Controller
         try{
             DB::beginTransaction();
             $data = $comments->saveComment($request);
+
             DB::commit();
             return view('comment.newcomment')->with([
                 'comment'=>$data

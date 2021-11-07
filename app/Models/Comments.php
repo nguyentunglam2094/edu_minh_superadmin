@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Libraries\Ultilities;
 use Illuminate\Database\Eloquent\Model;
 
 class Comments extends Model
@@ -53,26 +54,45 @@ class Comments extends Model
         if(!empty($request->parent_id)){
             $parent_id = $request->parent_id;
         }
+        $commentModel = new Comments();
         if(empty($request->type)){
             $data = [
                 'user_id'=>0,
                 'teacher_id'=>$request->user()->id,
                 'object_id'=>0,
                 'exercise_id'=>$request->ex_id,
-                'comment'=>$request->newCmt,
+                'comment'=>Ultilities::clearXSS($request->newCmt),
                 'parent_id'=>$parent_id,
             ];
+            //push noti tới tất cả những người đã comment bài tập
+            $listStudent = $commentModel->where('exercise_id', $request->ex_id)->where('user_id', '!=', 0)->pluck('user_id')->toArray();
+            $title = "Đã phản hồi một bài tập";
+            $screen = 'detailtest';
         }else{
             $data = [
                 'user_id'=>0,
                 'teacher_id'=>$request->user()->id,
                 'object_id'=>$request->ex_id,
                 'exercise_id'=>0,
-                'comment'=>$request->newCmt,
+                'comment'=>Ultilities::clearXSS($request->newCmt),
                 'parent_id'=>$parent_id,
             ];
+            //push noti tới tất cả những người đã đề thi
+            $listStudent = $commentModel->where('object_id', $request->ex_id)->where('user_id', '!=', 0)->pluck('user_id')->toArray();
+            $title = "Đã phản hồi một bài thi";
+            $screen = 'detailexersire';
         }
-        return $this->create($data);
+        $listStudent = array_unique($listStudent);
+
+        $createCmt = $this->create($data);
+
+        Ultilities::pushNotifyToUsers($request->user()->id, $listStudent, $title, $createCmt->comment,
+        PushNotifications::TYPE_GROUP, PushNotifications::SOURCE_ADMIN, PushNotifications::SOURCE_STUDENT,
+        $screen, $request->ex_id
+        );
+
+
+        return $createCmt;
     }
 
 

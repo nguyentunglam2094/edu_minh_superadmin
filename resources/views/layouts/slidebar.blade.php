@@ -46,7 +46,11 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('index.notification') }}" aria-expanded="false">
-                        <i class="fas fa-align-left"></i><span class="hide-menu notification"> Thông báo <span class="badge">{{ $notification }}</span></span>
+                        <i class="fas fa-align-left"></i><span class="hide-menu notification"> Thông báo
+                            @if ($notification>0)
+                            <span class="badge">{{ $notification }}</span>
+                            @endif
+                        </span>
                     </a>
                 </li>
 

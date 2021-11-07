@@ -26,7 +26,7 @@
         .notification .badge {
         position: absolute;
         right: 15px;
-        padding: 5px 5px;
+        padding: 0px 5px;
         border-radius: 50%;
         background: red;
         color: white;
@@ -224,51 +224,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script src="{{ asset('xtreme/assets/libs/sweetalert2/dist/sweetalert2.all.min.js')}}"></script>
     <script src="{{ asset('xtreme/assets/libs/sweetalert2/sweet-alert.init.js')}}"></script>>
-
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase.js"></script>
-    <script src="{{ asset('js/firebase.init.js') }}"></script>
-
-
-    <script>
-        // const messaging = firebase.messaging();
-        // messaging
-        //     .requestPermission()
-        //     .then(function () {
-        //         console.log("Notification permission granted.");
-        //         // console.log(messaging.getToken());
-        //         return messaging.getToken()
-        //     })
-        //     .then(function(token) {
-        //         console.log(token);
-        //         $.ajax({
-        //             type:'POST',
-        //             url: '{{ route('update.token.device') }}',
-        //             data:{token : token, _token: "<?php echo csrf_token(); ?>"},
-        //             success:function(data){
-        //             //    console.log(data);
-        //             }
-        //         });
-        //     })
-        //     .catch(function (err) {
-        //         console.log("Unable to get permission to notify.", err);
-        //     });
-
-            // messaging.onMessage(function(payload, data) {
-            //     //kiểm tra số tin nhắn chưa đ
-            //     console.log("Message received. ", payload);
-            //     toastr.success(payload.notification.body,payload.notification.title, {
-            //         onclick: function(){
-            //             // var url = '{{ url('/detailTransaction/') }}/' + payload.data.id;
-            //             // window.location.href = url;
-            //             // update ajax push
-            //             console.log('abcddddddd------');
-            //         }
-            //     });
-            //     //admin.detail.transaction
-            //     // NotisElem.innerHTML = NotisElem.innerHTML + JSON.stringify(payload)
-            // });
-    </script>
 
     <script>
 
