@@ -18,6 +18,12 @@ class Exersires extends Model
         return $this->hasOne(ExerciseType::class, 'id', 'exercises_type_id');
     }
 
+    public function getImageQuestionAttribute($key)
+    {
+        $image = explode('|', $key);
+        return !empty($image[0]) ? $image[0] : $image[1];
+    }
+
     public function getExersires()
     {
         return $this->with('typeExercire')->orderBy('id','desc')->get();
